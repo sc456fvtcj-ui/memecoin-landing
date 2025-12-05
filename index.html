@@ -2,222 +2,753 @@
 <html lang="he" dir="rtl">
 <head>
     <meta charset="UTF-8">
+    <title>BLOCKVISION – קהילה, ממקוין וגרפים 🔥</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>שולי שטרית – מעצבת שיער מומחית בגוונים</title>
+
+    <!-- אפשר להוסיף פה Google Font אם תרצה -->
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             margin: 0;
-            font-family: "Alef", sans-serif;
-            background: #fafafa;
-            color: #333;
-            line-height: 1.6;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: radial-gradient(circle at top, #111827 0, #020617 40%, #000000 100%);
+            color: #f9fafb;
+            line-height: 1.7;
         }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* ------- תפריט עליון ------- */
+
         header {
-            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-            padding: 80px 20px;
-            text-align: center;
-        }
-        header h1 {
-            font-size: 3.2rem;
-            margin: 0;
-        }
-        header p {
-            font-size: 1.4rem;
-            margin-top: 15px;
-        }
-        nav {
-            background: #fff;
-            padding: 15px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
             position: sticky;
             top: 0;
-            z-index: 10;
+            z-index: 50;
+            backdrop-filter: blur(18px);
+            background: linear-gradient(to left, rgba(15,23,42,0.92), rgba(0,0,0,0.96));
+            border-bottom: 1px solid rgba(148,163,184,0.3);
         }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+        }
+
+        .logo-mark {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            border: 2px solid #22c55e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
         nav a {
-            margin: 0 15px;
-            text-decoration: none;
-            color: #444;
-            font-weight: bold;
+            margin: 0 10px;
+            font-size: 0.95rem;
+            opacity: 0.8;
         }
+
+        nav a:hover {
+            opacity: 1;
+        }
+
+        .nav-cta {
+            padding: 8px 16px;
+            border-radius: 999px;
+            background: linear-gradient(135deg, #22c55e, #22d3ee);
+            color: #020617;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        /* ------- מבנה כללי ------- */
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px 80px;
+        }
+
         section {
-            padding: 60px 20px;
-            max-width: 1100px;
-            margin: auto;
+            margin-bottom: 80px;
         }
-        .columns {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
+
+        h1, h2, h3 {
+            margin-top: 0;
         }
-        .col {
-            background: #fff;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-        }
+
         h2 {
-            margin-bottom: 25px;
             font-size: 2rem;
-            color: #444;
+            margin-bottom: 18px;
         }
-        .articles .article {
-            background: #fff;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+
+        .tagline {
+            color: #9ca3af;
+            font-size: 0.95rem;
         }
-        .price-table {
+
+        .accent {
+            color: #22c55e;
+        }
+
+        /* ------- HERO ------- */
+
+        .hero {
+            display: grid;
+            grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+            gap: 30px;
+            align-items: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 4px 10px;
+            border-radius: 999px;
+            border: 1px solid rgba(148,163,184,0.5);
+            font-size: 0.8rem;
+            color: #e5e7eb;
+            opacity: 0.9;
+        }
+
+        .hero-title {
+            font-size: 2.7rem;
+            margin: 14px 0;
+        }
+
+        .hero-subtitle {
+            color: #9ca3af;
+            font-size: 1.03rem;
+            max-width: 34em;
+        }
+
+        .hero-buttons {
+            margin-top: 24px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .btn-primary {
+            padding: 12px 20px;
+            border-radius: 999px;
+            background: linear-gradient(135deg, #22c55e, #22d3ee);
+            border: none;
+            color: #020617;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+
+        .btn-secondary {
+            padding: 12px 20px;
+            border-radius: 999px;
+            border: 1px solid rgba(148,163,184,0.5);
+            background: transparent;
+            color: #e5e7eb;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+
+        .hero-meta {
+            margin-top: 16px;
+            font-size: 0.85rem;
+            color: #6b7280;
+        }
+
+        .hero-visual {
+            position: relative;
+            border-radius: 24px;
+            padding: 18px;
+            background: radial-gradient(circle at top, rgba(34,197,94,0.15), rgba(15,23,42,1));
+            border: 1px solid rgba(55,65,81,0.9);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.7);
+        }
+
+        .hero-visual h3 {
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+
+        .hero-visual small {
+            color: #9ca3af;
+        }
+
+        .hero-graph {
+            margin-top: 16px;
+            height: 170px;
+            border-radius: 16px;
+            background-image:
+                linear-gradient(to top, rgba(0,0,0,0.2), rgba(0,0,0,0.6)),
+                url("images/graph-main.jpg");
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-graph::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: linear-gradient(135deg, rgba(34,197,94,0.2), transparent);
+            mix-blend-mode: screen;
+        }
+
+        .hero-stat-row {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 14px;
+            font-size: 0.8rem;
+            color: #9ca3af;
+        }
+
+        .hero-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            border-radius: 999px;
+            background: rgba(15,118,110,0.25);
+            font-size: 0.78rem;
+            color: #a5f3fc;
+        }
+
+        /* ------- שלוש עמודות – על הפרויקט / הטוקן / הכימיה ------- */
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0,1fr));
+            gap: 24px;
+        }
+
+        .card {
+            background: radial-gradient(circle at top, rgba(34,197,94,0.13), rgba(15,23,42,0.96));
+            border-radius: 20px;
+            padding: 18px 18px 20px;
+            border: 1px solid rgba(55,65,81,0.9);
+            box-shadow: 0 18px 40px rgba(0,0,0,0.65);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 0.94rem;
+            color: #e5e7eb;
+        }
+
+        .card small {
+            font-size: 0.8rem;
+            color: #9ca3af;
+        }
+
+        .card::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at top left, rgba(34,211,238,0.18), transparent 55%);
+            opacity: 0;
+            transition: opacity .25s ease-out;
+        }
+
+        .card:hover::after {
+            opacity: 1;
+        }
+
+        /* ------- גרפים / גלריה ------- */
+
+        .graph-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0,1fr));
+            gap: 16px;
+        }
+
+        .graph-card {
+            position: relative;
+            border-radius: 18px;
+            overflow: hidden;
+            border: 1px solid rgba(55,65,81,0.9);
+            background: #020617;
+        }
+
+        .graph-card img {
+            display: block;
             width: 100%;
-            border-collapse: collapse;
+            height: 170px;
+            object-fit: cover;
         }
-        .price-table th, .price-table td {
-            padding: 14px;
-            border-bottom: 1px solid #ddd;
+
+        .graph-label {
+            position: absolute;
+            bottom: 8px;
+            right: 10px;
+            padding: 4px 9px;
+            border-radius: 999px;
+            font-size: 0.78rem;
+            background: rgba(15,23,42,0.9);
+            border: 1px solid rgba(148,163,184,0.6);
         }
-        .price-table th {
-            background: #ffe4e1;
+
+        /* ------- "ציוצי קהילה" ------- */
+
+        .tweet-grid {
+            display: grid;
+            grid-template-columns: repeat(2,minmax(0,1fr));
+            gap: 20px;
         }
-        footer {
-            background: #333;
-            color: #fff;
-            padding: 40px;
+
+        .tweet-card {
+            border-radius: 18px;
+            padding: 14px 16px;
+            background: radial-gradient(circle at top left, rgba(34,197,94,0.18), rgba(15,23,42,0.96));
+            border: 1px solid rgba(55,65,81,0.95);
+            font-size: 0.9rem;
+        }
+
+        .tweet-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+
+        .tweet-avatar {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: radial-gradient(circle at top, #22d3ee, #22c55e);
+        }
+
+        .tweet-meta {
+            font-size: 0.78rem;
+            color: #9ca3af;
+        }
+
+        .hashtags {
+            margin-top: 10px;
+            font-size: 0.8rem;
+            color: #a5f3fc;
+        }
+
+        /* ------- מפת דרכים ------- */
+
+        .roadmap {
+            display: grid;
+            grid-template-columns: repeat(3,minmax(0,1fr));
+            gap: 18px;
+        }
+
+        .phase {
+            padding: 16px 16px 18px;
+            border-radius: 18px;
+            border: 1px solid rgba(55,65,81,0.9);
+            background: linear-gradient(to top, rgba(15,23,42,0.95), rgba(15,23,42,0.8));
+            font-size: 0.9rem;
+        }
+
+        .phase h3 {
+            font-size: 1rem;
+            margin-bottom: 6px;
+        }
+
+        .phase ul {
+            padding-right: 18px;
+            margin: 0;
+        }
+
+        .phase li {
+            margin-bottom: 6px;
+        }
+
+        /* ------- קטע סיום / הצטרפות ------- */
+
+        .cta-final {
             text-align: center;
-            margin-top: 60px;
+            background: radial-gradient(circle at top, rgba(34,197,94,0.18), rgba(15,23,42,0.96));
+            border-radius: 26px;
+            padding: 28px 20px 30px;
+            border: 1px solid rgba(55,65,81,0.95);
+        }
+
+        .cta-final p {
+            max-width: 40em;
+            margin: 0 auto 18px;
+            color: #e5e7eb;
+        }
+
+        footer {
+            border-top: 1px solid rgba(31,41,55,0.9);
+            padding: 18px 20px 26px;
+            font-size: 0.8rem;
+            text-align: center;
+            color: #6b7280;
+        }
+
+        /* ------- רספונסיביות ------- */
+
+        @media (max-width: 900px) {
+            .hero {
+                grid-template-columns: minmax(0,1fr);
+            }
+            .hero-visual {
+                order: -1;
+            }
+            .grid-3,
+            .graph-grid,
+            .tweet-grid,
+            .roadmap {
+                grid-template-columns: minmax(0,1fr);
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- תפריט -->
-    <nav>
-        <a href="#about">על שולי</a>
-        <a href="#columns">מומחיות</a>
-        <a href="#articles">כתבות</a>
-        <a href="#prices">מחירון</a>
-        <a href="#contact">צור קשר</a>
-    </nav>
+<header>
+    <div class="nav-container">
+        <div class="logo">
+            <div class="logo-mark">BV</div>
+            <div>BLOCKVISION</div>
+        </div>
 
-    <!-- כותרת -->
-    <header>
-        <h1>שולי שטרית</h1>
-        <p>מעצבת שיער עלית, מומחית לגוונים וכימיה – 26 שנות ניסיון באילת עיר הנצח</p>
-    </header>
+        <nav>
+            <a href="#hero">בית</a>
+            <a href="#about">על הפרויקט</a>
+            <a href="#token">הטוקן</a>
+            <a href="#graphs">גרפים</a>
+            <a href="#community">הקהילה</a>
+            <a href="#roadmap">מפת דרכים</a>
+            <a class="nav-cta" href="https://twitter.com/ablockvision" target="_blank" rel="noopener">
+                לטוויטר
+            </a>
+        </nav>
+    </div>
+</header>
 
-    <!-- על שולי -->
+<main>
+
+    <!-- HERO -->
+    <section id="hero" class="hero">
+        <div>
+            <div class="hero-badge">
+                🚀 BLOCKVISION · AI • Meme Coin • Community
+            </div>
+
+            <h1 class="hero-title">
+                הלווייתן שלנו זז ביחד,<br>
+                <span class="accent">לא שוחה לבד.</span>
+            </h1>
+
+            <p class="hero-subtitle">
+                BLOCKVISION הוא ממקוין קהילתי שנולד מהשוק, מהגרפים ומהאמת:
+                כסף חכם זז ביחד. אנחנו משלבים קריפטו, אינטליגנציה מלאכותית ומסחר
+                ממוקד מומנטום כדי ליצור כוח אחד גדול – קהילה שמרוויחה ביחד.
+            </p>
+
+            <div class="hero-buttons">
+                <!-- קישור לטוויטר -->
+                <a class="btn-primary"
+                   href="https://twitter.com/ablockvision"
+                   target="_blank"
+                   rel="noopener">
+                    עקבו אחרי BLOCKVISION בטוויטר (X)
+                </a>
+
+                <!-- קישור למטבע – החלף לכתובת האמיתית -->
+                <a class="btn-secondary"
+                   href="https://example.com/blockvision-token"
+                   target="_blank"
+                   rel="noopener">
+                    💰 קניית המטבע (DAPP / DEX)
+                </a>
+            </div>
+
+            <div class="hero-meta">
+                🔔 רק מי שעוקב בזמן אמת מקבל את האזעקות המוקדמות, הגרפים והעדכונים הקריטיים.
+            </div>
+        </div>
+
+        <aside class="hero-visual">
+            <h3>מצב השוק – מבט קהילתי</h3>
+            <small>לא המלצה. אנחנו קוראים את הגרף, לא את החלומות.</small>
+
+            <div class="hero-graph">
+                <!--
+                  שים פה תמונה של גרף אמיתי:
+                  ../images/graph-main.jpg
+                  או כל תמונה אחרת מהטוויטר שלך
+                -->
+            </div>
+
+            <div class="hero-stat-row">
+                <div>
+                    🧠 AI + קריאה אנושית<br>
+                    <span class="tagline">רובוטיקה, חלקיקים, מומנטום – הכול מתרגם לגרף אחד.</span>
+                </div>
+                <div class="hero-pill">
+                    🐋 קהילה = לווייתן
+                </div>
+            </div>
+        </aside>
+    </section>
+
+    <!-- על הפרויקט / הטוקן / פילוסופיה -->
     <section id="about">
-        <h2>על שולי שטרית</h2>
-        <p>
-            שולי שטרית היא אחת ממעצבות השיער המוערכות בישראל. עם ניסיון של 26 שנה בעולם השיער,
-            התמחות עמוקה בכימיה ובגוונים מתקדמים, ואלפי לקוחות מרוצות מכל רחבי הארץ – שולי בנתה לעצמה שם של מצוינות,
-            דיוק ואמנות.  
+        <h2>Block Vision – למה נולדנו?</h2>
+        <p class="tagline">
+            המטרה פשוטה: לקחת את כל האנרגיה של ממקוין, לחבר אותה לידע אמיתי ולשוק חי – ולהפוך אותה
+            לכלי שעובד עבור הקהילה, לא רק עבור גולשים אקראיים.
         </p>
-        <p>
-            הסטודיו של שולי ממוקם בעיר אילת, מקום של אור, יצירה וחופש – והיא מביאה את כל הטוב הזה לשיער של כל אחת שמתיישבת מולה.
+
+        <div class="grid-3" style="margin-top:24px;">
+            <div class="card">
+                <h3>ממקוין, בלי הבולשיט</h3>
+                <p>
+                    ממקוינס הם כבר לא בדיחה – הם שכבת אנרגיה שלמה בתוך האקו־סיסטם של קריפטו.
+                    אצלנו ההומור נשאר בממים, והמשחק האמיתי קורה בגרפים, בזרימת נזילות ובתזמון.
+                </p>
+                <small>אנחנו עובדים עם נתונים, לא עם פומו.</small>
+            </div>
+
+            <div class="card" id="token">
+                <h3>הטוקן BLOCKVISION</h3>
+                <p>
+                    טוקן מונע־קהילה, נבנה סביב רעיון של תנועה חכמה:
+                    כניסה מוקדמת, קריאה של מומנטום, יציאה מדויקת. כל ההודעות
+                    הקריטיות – בטוויטר, בזמן אמת, בלי רעש מיותר.
+                </p>
+                <small>Contract address יתפרסם רק בערוצים הרשמיים.</small>
+            </div>
+
+            <div class="card">
+                <h3>AI, רובוטיקה וחלקיקים</h3>
+                <p>
+                    ההשראה מגיעה מצוותי הנדסה ורובוטיקה וחקר חלקיקים: חשיבה מדויקת,
+                    ניסוי, מדידה ושיפור מתמיד. אותו עיקרון עובד גם על הגרף –
+                    כל נר הוא דאטה.
+                </p>
+                <small>חדשנות אמיתית מתחילה מהתנהגות בשטח.</small>
+            </div>
+        </div>
+    </section>
+
+    <!-- גרפים / גלריה -->
+    <section id="graphs">
+        <h2>גרפים, ויז'ן ותנועה</h2>
+        <p class="tagline">
+            אנחנו חיים על הגרף. כל תמונה היא רגע בשוק – לא רק עיצוב יפה.
+            כאן תוכל להעלות צילומי מסך אמיתיים מהטוויטר: עדכונים, גרפים, שיאים ונפילות.
         </p>
-    </section>
 
-    <!-- שש עמודות תוכן -->
-    <section id="columns">
-        <h2>מכל הזוויות – שולי שטרית</h2>
-
-        <div class="columns">
-            <div class="col">
-                <h3>ניסיון של 26 שנה</h3>
-                <p>מאות שעות עבודה, אלפי לקוחות, השתלמויות בינלאומיות וטכניקות מתקדמות – הכל מתנקז לדיוק מושלם.</p>
+        <div class="graph-grid" style="margin-top:22px;">
+            <!-- החלף את ה-src לתמונות מהטוויטר שלך -->
+            <div class="graph-card">
+                <img src="images/graph1.jpg" alt="גרף עלייה חדה">
+                <div class="graph-label">🚀 Meme Season Mode</div>
             </div>
-            <div class="col">
-                <h3>מומחית בכימיה</h3>
-                <p>התאמת צבע מדויקת לשיער ולקרקפת, שימוש בחומרים האיכותיים ביותר ושמירה על בריאות השערה.</p>
+            <div class="graph-card">
+                <img src="images/graph2.jpg" alt="גרף תנודתיות">
+                <div class="graph-label">⚡ High-Voltage Momentum</div>
             </div>
-            <div class="col">
-                <h3>גוונים בהתאמה אישית</h3>
-                <p>אומברה, בלאיאז', מראה טבעי, מראה זוהר – כל לקוחה והגוונים שנולדו בשבילה.</p>
-            </div>
-            <div class="col">
-                <h3>עבודה עם החומר</h3>
-                <p>שליטה מלאה בכימיה של צבעים, חמצנים ושיער פגום – לשיקום מדויק ותוצאות מושלמות.</p>
-            </div>
-            <div class="col">
-                <h3>חדשנות מתמדת</h3>
-                <p>שולי מקפידה להתעדכן בטרנדים, בשיטות ובטכנולוגיות החדשות ביותר בעולם השיער.</p>
-            </div>
-            <div class="col">
-                <h3>סטודיו באילת</h3>
-                <p>מקום קסום שבו יופי, שלווה ומקצועיות מתחברים לחוויה אחת שלא תרצי לשכוח.</p>
+            <div class="graph-card">
+                <img src="images/graph3.jpg" alt="גרף ספירלה">
+                <div class="graph-label">🐋 Community Flow</div>
             </div>
         </div>
     </section>
 
-    <!-- כתבות (פיקטיביות/placeholder) -->
-    <section id="articles" class="articles">
-        <h2>כתבות ומאמרים על שולי</h2>
+    <!-- קהילה / "ציוצים" -->
+    <section id="community">
+        <h2>הקהילה – הכוח האמיתי</h2>
+        <p class="tagline">
+            אין פה "אנחנו ואתם". כולנו גוף אחד – לווייתן שמן, אך חד, שמחליט לזוז ביחד.
+            מי שנכנס – נכנס בשביל דרך, לא בשביל פליק אחד.
+        </p>
 
-        <div class="article">
-            <h3>״מלכת הגוונים של אילת״ – מגזין יופי (כתבה לדוגמה)</h3>
+        <div class="tweet-grid" style="margin-top:22px;">
+            <article class="tweet-card">
+                <div class="tweet-header">
+                    <div class="tweet-avatar"></div>
+                    <div>
+                        <strong>block vision</strong><br>
+                        <span class="tweet-meta">@ablockvision · עדכון קהילה</span>
+                    </div>
+                </div>
+                <p>
+                    "ממקוינס הם לא בדיחה – הם חלק מאקו־סיסטם שאנחנו בונים.
+                    אנחנו עובדים עם צוותים אמיתיים, פרויקטים עם רקורד של
+                    market caps במיליונים, ועם קהילה שמבינה שזה מרתון חכם,
+                    לא רולטה."
+                </p>
+                <div class="hashtags">
+                    #BLOCKVISION #MemeCoins #Crypto #AI #Robotics
+                </div>
+            </article>
+
+            <article class="tweet-card">
+                <div class="tweet-header">
+                    <div class="tweet-avatar"></div>
+                    <div>
+                        <strong>block vision</strong><br>
+                        <span class="tweet-meta">@ablockvision · תנועת שוק</span>
+                    </div>
+                </div>
+                <p>
+                    "זרימת הנזילות זזה לממקוינס. כשמייג'ורס נרגעים – מתחיל
+                    המשחק האמיתי. פה נוצרות קפיצות חדות. אנחנו כאן כדי לקרוא
+                    את הגרף ביחד, להיכנס מוקדם ולצאת בלי דרמות."
+                </p>
+                <div class="hashtags">
+                    #Momentum #AltSeason #BullRun #Community
+                </div>
+            </article>
+
+            <article class="tweet-card">
+                <div class="tweet-header">
+                    <div class="tweet-avatar"></div>
+                    <div>
+                        <strong>block vision</strong><br>
+                        <span class="tweet-meta">@ablockvision · הכרזה</span>
+                    </div>
+                </div>
+                <p>
+                    "הטוקן BLOCKVISION נבנה מתוך הקהילה – לא להיפך.
+                    רק מי שעוקב אחרי הערוצים הרשמיים מקבל את ה־alpha 
+                    בזמן. אין קבוצות צד, אין דילים מתחת לשולחן."
+                </p>
+                <div class="hashtags">
+                    #NewToken #Launch #Alpha #CryptoSignals
+                </div>
+            </article>
+
+            <article class="tweet-card">
+                <div class="tweet-header">
+                    <div class="tweet-avatar"></div>
+                    <div>
+                        <strong>block vision</strong><br>
+                        <span class="tweet-meta">@ablockvision · משפחת הלווייתן</span>
+                    </div>
+                </div>
+                <p>
+                    "כל סיפור רווח של חבר קהילה הוא הדלק שלנו.
+                    אנחנו פה כדי להוביל, להסביר, להראות ולשדר:
+                    Real people. Real profits. Real growth."
+                </p>
+                <div class="hashtags">
+                    #CommunityFirst #BlockVisionFamily #RealGains
+                </div>
+            </article>
+        </div>
+
+        <div style="margin-top:18px; font-size:0.85rem; color:#9ca3af;">
+            לעוד עדכונים חיים, גרפים וסיגנלים –  
+            <a href="https://twitter.com/ablockvision" target="_blank" rel="noopener" class="accent">
+                עקבו אחרי BLOCKVISION בטוויטר →
+            </a>
+        </div>
+    </section>
+
+    <!-- Roadmap -->
+    <section id="roadmap">
+        <h2>מפת דרכים – לאן אנחנו זזים?</h2>
+        <p class="tagline">
+            העולם משתנה מהר, ולכן גם המפה שלנו דינמית. אבל העקרונות נשארים:
+            שקיפות, קהילה, ותנועה חכמה בשוק.
+        </p>
+
+        <div class="roadmap" style="margin-top:22px;">
+            <div class="phase">
+                <h3>שלב I – בניית בסיס</h3>
+                <ul>
+                    <li>השקת ערוצי טוויטר ורשתות</li>
+                    <li>צמיחה אורגנית של הקהילה והמאמינים הראשונים</li>
+                    <li>תוכן יומי: ניתוח שוק, גרפים ומומנטום</li>
+                    <li>הכנת טוקנומיקס ושקיפות על החזון</li>
+                </ul>
+            </div>
+            <div class="phase">
+                <h3>שלב II – השקת הטוקן</h3>
+                <ul>
+                    <li>פרסום Contract Address בערוצים הרשמיים בלבד</li>
+                    <li>השקה ב־DEX / CEX נבחרים</li>
+                    <li>קמפיין ממוקד לקהילה – לא "שילה" עיוורת</li>
+                    <li>בניית לוח זמנים לעדכונים ו־burns / utilities</li>
+                </ul>
+            </div>
+            <div class="phase">
+                <h3>שלב III – הרחבת הוויז'ן</h3>
+                <ul>
+                    <li>שיתופי פעולה עם פרויקטים בעולם AI ורובוטיקה</li>
+                    <li>כלי אנליזה קהילתי לגרפים ומומנטום</li>
+                    <li>אירועי קהילה, תחרויות ו־rewards לבוני תוכן</li>
+                    <li>המשך בניית BLOCKVISION כמותג שוק מוביל</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA סופי -->
+    <section>
+        <div class="cta-final">
+            <h2>אנחנו לווייתן טוב – שמן, חכם ומאוחד.</h2>
             <p>
-                בכתבה מקיפה שפורסמה לאחרונה, הוכתרה שולי כאחת ממעצבות השיער המשפיעות בישראל, בזכות הדיוק הטכני והראייה האמנותית שלה.
+                אם האג'נדה שלך היא לעשות כסף ביחד, להיות בזמן על הגרף,
+                להבין מה קורה מאחורי הקלעים של השוק ולהפוך לחלק מקהילה שחושבת
+                קדימה – BLOCKVISION נבנה בשבילך.
             </p>
-        </div>
-
-        <div class="article">
-            <h3>״האישה שמבינה שיער כמו מדע״ – מגזין אופנה (מאמר דמה)</h3>
-            <p>
-                המאמר מדבר על יכולתה הנדירה לשלב בין הבנה מדעית עמוקה לכישרון יצירתי שאי אפשר ללמד.
-            </p>
-        </div>
-
-        <div class="article">
-            <h3>ראיון השראה – ״אילת המודרנית״ (תוכן לדוגמה)</h3>
-            <p>
-                שולי מספרת על הדרך, החזון ועל מה שהופך כל לקוחה ליצירת אמנות בפני עצמה.
-            </p>
+            <div class="hero-buttons" style="justify-content:center; margin-top:10px;">
+                <a class="btn-primary"
+                   href="https://twitter.com/ablockvision"
+                   target="_blank"
+                   rel="noopener">
+                    הצטרפות לטוויטר הרשמי
+                </a>
+                <a class="btn-secondary"
+                   href="https://example.com/blockvision-token"
+                   target="_blank"
+                   rel="noopener">
+                    🔗 מעבר לעמוד המטבע
+                </a>
+            </div>
+            <div style="margin-top:12px; font-size:0.8rem; color:#9ca3af;">
+                אין באמור ייעוץ השקעות. כל אחד אחראי על ההחלטות והסיכונים שלו.  
+                אנחנו כאן כדי לזוז חכם – לא להבטיח חלומות.
+            </div>
         </div>
     </section>
 
-    <!-- מחירון -->
-    <section id="prices">
-        <h2>מחירון</h2>
-        <table class="price-table">
-            <tr>
-                <th>שירות</th>
-                <th>מחיר</th>
-            </tr>
-            <tr>
-                <td>גוונים בהתאמה אישית</td>
-                <td>₪450–₪900</td>
-            </tr>
-            <tr>
-                <td>בלאיאז'</td>
-                <td>₪550–₪1,200</td>
-            </tr>
-            <tr>
-                <td>תספורת נשים</td>
-                <td>₪120–₪200</td>
-            </tr>
-            <tr>
-                <td>טיפול שיקום כימי</td>
-                <td>₪300–₪600</td>
-            </tr>
-            <tr>
-                <td>החלקה אורגנית</td>
-                <td>₪700–₪1,400</td>
-            </tr>
-        </table>
-    </section>
+</main>
 
-    <!-- צור קשר -->
-    <section id="contact">
-        <h2>צור קשר</h2>
-        <p>להזמנת תורים ושאלות:</p>
-        <p><strong>טלפון:</strong> 050-0000000</p>
-        <p><strong>אימייל:</strong> example@example.com</p>
-        <p><strong>מיקום:</strong> אילת, ישראל</p>
-    </section>
-
-    <footer>
-        © כל הזכויות שמורות – שולי שטרית, 2025
-    </footer>
+<footer>
+    © כל הזכויות שמורות – BLOCKVISION · נבנה לקהילה, לא ללבד · 2025
+</footer>
 
 </body>
 </html>
