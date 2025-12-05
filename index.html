@@ -1,158 +1,318 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BLOCKVISION • Meme Season Mode</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BLOCKVISION • The Next Crypto Intelligence</title>
 
-  <!-- MAIN STYLE -->
-  <link rel="stylesheet" href="style.css" />
+<!-- FONTS -->
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
-  <!-- LIBRARIES -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<!-- CHART.JS -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- GSAP -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+<style>
+
+/* ---------------- GLOBAL THEME ---------------- */
+
+:root {
+  --bg: #020204;
+  --panel: #0a0f14;
+  --accent: #20f6ff;
+  --accent2: #15ff62;
+  --text: #e6f7ff;
+  --soft: #6b7a8c;
+  --danger: #ff3355;
+  --purple: #b26bff;
+  --gold: #ffcf3a;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Inter", sans-serif;
+  overflow-x:hidden;
+}
+
+/* ---------------- PARTICLE BACKGROUND ---------------- */
+
+#particles {
+  position:fixed;
+  width:100%;
+  height:100%;
+  top:0; left:0;
+  z-index:-1;
+}
+
+/* ---------------- NAVIGATION ---------------- */
+
+nav {
+  width:100%;
+  padding:20px 40px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  position:fixed;
+  top:0;
+  background:rgba(0,0,0,0.35);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  z-index:50;
+}
+
+.nav-left h1 {
+  font-family:"Orbitron";
+  letter-spacing:3px;
+  font-weight:800;
+  color:var(--accent);
+  font-size:24px;
+}
+
+.nav-right a {
+  margin-left:20px;
+  color:var(--text);
+  text-decoration:none;
+  font-weight:600;
+  transition:.3s;
+}
+
+.nav-right a:hover {
+  color:var(--accent2);
+}
+
+/* ---------------- HERO ---------------- */
+
+.hero {
+  padding-top:140px;
+  text-align:center;
+}
+
+.hero h2 {
+  font-size:40px;
+  font-family:"Orbitron";
+  letter-spacing:2px;
+  color:var(--accent2);
+  margin-bottom:10px;
+}
+
+.hero p {
+  font-size:18px;
+  color:var(--soft);
+  width:70%;
+  margin:auto;
+  line-height:1.5;
+}
+
+/* ---------------- LIVE MARKETS ---------------- */
+
+.section-title {
+  margin-top:80px;
+  text-align:center;
+  font-family:"Orbitron";
+  font-size:28px;
+  color:var(--accent);
+}
+
+.chart-grid {
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap:35px;
+  padding:40px;
+}
+
+.chart-card {
+  background:var(--panel);
+  padding:20px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,0.05);
+  box-shadow:0 0 25px rgba(0,255,255,0.08);
+  transition:.3s;
+}
+
+.chart-card:hover {
+  transform:translateY(-5px);
+  box-shadow:0 0 40px rgba(0,255,255,0.18);
+}
+
+.chart-card h3 {
+  font-family:"Orbitron";
+  margin-bottom:12px;
+}
+
+/* ---------------- COMMUNITY ---------------- */
+
+.community {
+  padding:80px;
+  text-align:center;
+}
+
+.community h2 {
+  font-family:"Orbitron";
+  font-size:32px;
+  margin-bottom:10px;
+  color:var(--gold);
+}
+
+.community p {
+  width:65%;
+  margin:auto;
+  color:var(--soft);
+  font-size:18px;
+}
+
+/* ---------------- FOOTER ---------------- */
+
+footer {
+  text-align:center;
+  padding:25px;
+  color:var(--soft);
+  font-size:14px;
+  border-top:1px solid rgba(255,255,255,0.05);
+  margin-top:60px;
+}
+
+</style>
 </head>
 
 <body>
-  <!-- BACKGROUND PARTICLES -->
-  <canvas id="bg"></canvas>
 
-  <!-- HEADER -->
-  <header>
-    <div class="logo">
-      <!-- לוגו וקטורי פשוט בלי קובץ חיצוני -->
-      <div class="logo-mark">
-        <span>B</span>
-      </div>
-      <div class="logo-text">
-        <h1>BLOCKVISION</h1>
-        <p>Meme • AI • Robotics • Crypto</p>
-      </div>
-    </div>
+<canvas id="particles"></canvas>
 
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="roadmap.html">Roadmap</a>
-      <a href="tokenomics.html">Tokenomics</a>
-      <a href="https://twitter.com/ablockvision" target="_blank">@ablockvision</a>
-    </nav>
-  </header>
+<nav>
+  <div class="nav-left"><h1>BLOCKVISION</h1></div>
+  <div class="nav-right">
+    <a href="#">Home</a>
+    <a href="#">Roadmap</a>
+    <a href="#">Tokenomics</a>
+    <a href="https://twitter.com/ablockvision" target="_blank">@ablockvision</a>
+  </div>
+</nav>
 
-  <!-- HERO -->
-  <main>
-    <section class="hero fade">
-      <div class="hero-content">
-        <h2 class="neon">Meme Season Mode: ACTIVATED</h2>
-        <p>
-          We don’t chase hype – we create it. BLOCKVISION is where AI, robotics and meme power collide.
-          A community-built engine designed to catch the biggest rotations before they explode.
-        </p>
-        <div class="hero-actions">
-          <a href="https://twitter.com/ablockvision" target="_blank" class="cta">
-            Join The Twitter Army
-          </a>
-          <div class="hero-note">
-            <span class="dot"></span>
-            <span>Early is everything. Stay locked in.</span>
-          </div>
-        </div>
-      </div>
+<section class="hero">
+  <h2>MEME SEASON MODE • ACTIVATED</h2>
+  <p>
+    We don’t chase hype — we create it. BLOCKVISION is where AI, robotics & meme power collide into a market-reading engine built for the next evolution of crypto dominance.
+  </p>
+</section>
 
-      <div class="hero-card">
-        <div class="hero-stat">
-          <span class="label">Next Milestone</span>
-          <span class="value">16 · 12 · 2025</span>
-        </div>
-        <div class="hero-stat">
-          <span class="label">Mission</span>
-          <span class="value">Community • Momentum • Profit</span>
-        </div>
-        <div class="hero-tagline">
-          When we move together – we’re not fish. We’re the whale.
-        </div>
-      </div>
-    </section>
+<h2 class="section-title">LIVE MARKET SIGNALS</h2>
 
-    <!-- LIVE CHARTS -->
-    <section class="charts fade">
-      <h2 class="section-title neon">Live Market Signals</h2>
-      <p class="section-sub">
-        Real-time snapshots of the majors – so the community always knows where the flow is.
-      </p>
+<div class="chart-grid">
+  <div class="chart-card"><h3>Bitcoin (BTC)</h3><canvas id="btc"></canvas></div>
+  <div class="chart-card"><h3>Ethereum (ETH)</h3><canvas id="eth"></canvas></div>
+  <div class="chart-card"><h3>Ripple (XRP)</h3><canvas id="xrp"></canvas></div>
+  <div class="chart-card"><h3>Solana (SOL)</h3><canvas id="sol"></canvas></div>
+  <div class="chart-card"><h3>BNB</h3><canvas id="bnb"></canvas></div>
+</div>
 
-      <div class="chart-grid">
-        <div class="chart-card">
-          <div class="chart-header">
-            <h3>Bitcoin (BTC)</h3>
-            <span class="tag tag-btc">Alpha Flow</span>
-          </div>
-          <div class="chart-wrapper">
-            <canvas id="btcChart"></canvas>
-          </div>
-        </div>
+<section class="community">
+  <h2>The BLOCKVISION Army</h2>
+  <p>
+    Early is everything. Momentum is everything. Intelligence wins.  
+    When we move — the market listens. When we strike — rotations ignite.  
+    This is more than a token. This is a movement.
+  </p>
+</section>
 
-        <div class="chart-card">
-          <div class="chart-header">
-            <h3>Ethereum (ETH)</h3>
-            <span class="tag tag-eth">DeFi Pulse</span>
-          </div>
-          <div class="chart-wrapper">
-            <canvas id="ethChart"></canvas>
-          </div>
-        </div>
+<footer>
+  © 2025 BLOCKVISION — Built for the community. Fueled by momentum.
+</footer>
 
-        <div class="chart-card">
-          <div class="chart-header">
-            <h3>Ripple (XRP)</h3>
-            <span class="tag tag-xrp">Momentum Watch</span>
-          </div>
-          <div class="chart-wrapper">
-            <canvas id="xrpChart"></canvas>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- COMMUNITY -->
-    <section class="community fade">
-      <h2 class="section-title neon">The BLOCKVISION Community</h2>
-      <p>
-        We’re not just posting charts – we’re building a culture.
-        A collective of traders, builders and degens who know it’s smarter to move together than to chase alone.
-      </p>
+<script>
+// --------- PARTICLE ENGINE ----------
+const c = document.getElementById("particles");
+const ctx = c.getContext("2d");
+let W, H, particles = [];
 
-      <div class="pill-row">
-        <span class="pill">Exclusive signals</span>
-        <span class="pill">Real-time updates</span>
-        <span class="pill">Long-term vision</span>
-      </div>
-    </section>
+function resize() {
+  W = c.width = window.innerWidth;
+  H = c.height = window.innerHeight;
+}
+window.addEventListener("resize", resize);
+resize();
 
-    <!-- PREVIEW LINKS -->
-    <section class="links fade">
-      <div class="link-card">
-        <h3>Roadmap</h3>
-        <p>
-          From stealth to launch to full-stack ecosystem. See how BLOCKVISION scales from meme to movement.
-        </p>
-        <a href="roadmap.html" class="link-btn">View Roadmap →</a>
-      </div>
+function spawn() {
+  return {
+    x: Math.random()*W,
+    y: Math.random()*H,
+    r: Math.random()*4+1,
+    s: Math.random()*1+0.3,
+    c: ["#20f6ff","#15ff62","#b26bff"][Math.floor(Math.random()*3)]
+  };
+}
 
-      <div class="link-card">
-        <h3>Tokenomics</h3>
-        <p>
-          Transparent distribution, community-first allocation and enough firepower for marketing and growth.
-        </p>
-        <a href="tokenomics.html" class="link-btn">View Tokenomics →</a>
-      </div>
-    </section>
-  </main>
+for(let i=0;i<80;i++) particles.push(spawn());
 
-  <footer>
-    <p>© 2025 BLOCKVISION — Built for the community, fueled by momentum.</p>
-  </footer>
+function draw(){
+  ctx.clearRect(0,0,W,H);
+  particles.forEach(p=>{
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fillStyle=p.c;
+    ctx.fill();
+    p.y+=p.s;
+    if(p.y>H) p.y = -10;
+  });
+  requestAnimationFrame(draw);
+}
+draw();
 
-  <!-- MAIN SCRIPT -->
-  <script src="app.js"></script>
+
+// --------- LIVE CRYPTO CHARTS ----------
+const coins = {
+  btc: "bitcoin",
+  eth: "ethereum",
+  xrp: "ripple",
+  sol: "solana",
+  bnb: "binancecoin"
+};
+
+function createChart(id){
+  return new Chart(document.getElementById(id), {
+    type:"line",
+    data:{labels:[], datasets:[{label:id.toUpperCase(), data:[], borderColor:"#20f6ff", tension:0.3}]},
+    options:{responsive:true, scales:{x:{display:false}, y:{display:false}}, plugins:{legend:{display:false}}}
+  });
+}
+
+let charts = {
+  btc: createChart("btc"),
+  eth: createChart("eth"),
+  xrp: createChart("xrp"),
+  sol: createChart("sol"),
+  bnb: createChart("bnb")
+};
+
+async function updatePrices(){
+  for(const key in coins){
+    try{
+      const res = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${coins[key]}&vs_currencies=usd`);
+      const data = await res.json();
+      const price = data[coins[key]].usd;
+
+      const ch = charts[key];
+      if(ch.data.labels.length>40){
+        ch.data.labels.shift();
+        ch.data.datasets[0].data.shift();
+      }
+
+      ch.data.labels.push("");
+      ch.data.datasets[0].data.push(price);
+      ch.update();
+    } catch(e){ console.log(e); }
+  }
+}
+
+setInterval(updatePrices, 3000);
+updatePrices();
+
+</script>
+
 </body>
 </html>
