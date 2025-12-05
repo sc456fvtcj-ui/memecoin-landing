@@ -1,15 +1,12 @@
 <!DOCTYPE html>
-<html lang="he" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
-    <title>BLOCKVISION – קהילה, ממקוין וגרפים 🔥</title>
+    <title>BLOCKVISION – Community, Momentum & Meme Coin Power</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- אפשר להוסיף פה Google Font אם תרצה -->
     <style>
-        * {
-            box-sizing: border-box;
-        }
+        * { box-sizing: border-box; }
 
         body {
             margin: 0;
@@ -24,13 +21,12 @@
             text-decoration: none;
         }
 
-        /* ------- תפריט עליון ------- */
-
+        /* HEADER */
         header {
             position: sticky;
             top: 0;
             z-index: 50;
-            backdrop-filter: blur(18px);
+            backdrop-filter: blur(20px);
             background: linear-gradient(to left, rgba(15,23,42,0.92), rgba(0,0,0,0.96));
             border-bottom: 1px solid rgba(148,163,184,0.3);
         }
@@ -69,9 +65,7 @@
             opacity: 0.8;
         }
 
-        nav a:hover {
-            opacity: 1;
-        }
+        nav a:hover { opacity: 1; }
 
         .nav-cta {
             padding: 8px 16px;
@@ -82,54 +76,34 @@
             font-size: 0.9rem;
         }
 
-        /* ------- מבנה כללי ------- */
-
         main {
             max-width: 1200px;
             margin: 0 auto;
             padding: 40px 20px 80px;
         }
 
-        section {
-            margin-bottom: 80px;
-        }
+        section { margin-bottom: 80px; }
+        h1, h2, h3 { margin-top: 0; }
+        h2 { font-size: 2rem; margin-bottom: 18px; }
 
-        h1, h2, h3 {
-            margin-top: 0;
-        }
+        .tagline { color: #9ca3af; font-size: 0.95rem; }
+        .accent { color: #22c55e; }
 
-        h2 {
-            font-size: 2rem;
-            margin-bottom: 18px;
-        }
-
-        .tagline {
-            color: #9ca3af;
-            font-size: 0.95rem;
-        }
-
-        .accent {
-            color: #22c55e;
-        }
-
-        /* ------- HERO ------- */
-
+        /* HERO */
         .hero {
             display: grid;
-            grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+            grid-template-columns: 1.5fr 1fr;
             gap: 30px;
             align-items: center;
         }
 
         .hero-badge {
             display: inline-flex;
-            align-items: center;
             gap: 8px;
             padding: 4px 10px;
             border-radius: 999px;
             border: 1px solid rgba(148,163,184,0.5);
             font-size: 0.8rem;
-            color: #e5e7eb;
             opacity: 0.9;
         }
 
@@ -159,7 +133,6 @@
             color: #020617;
             font-weight: 700;
             cursor: pointer;
-            font-size: 0.95rem;
         }
 
         .btn-secondary {
@@ -169,7 +142,6 @@
             background: transparent;
             color: #e5e7eb;
             cursor: pointer;
-            font-size: 0.95rem;
         }
 
         .hero-meta {
@@ -179,7 +151,6 @@
         }
 
         .hero-visual {
-            position: relative;
             border-radius: 24px;
             padding: 18px;
             background: radial-gradient(circle at top, rgba(34,197,94,0.15), rgba(15,23,42,1));
@@ -187,119 +158,43 @@
             box-shadow: 0 25px 60px rgba(0,0,0,0.7);
         }
 
-        .hero-visual h3 {
-            font-size: 1rem;
-            margin-bottom: 8px;
-        }
-
-        .hero-visual small {
-            color: #9ca3af;
-        }
-
         .hero-graph {
             margin-top: 16px;
             height: 170px;
             border-radius: 16px;
-            background-image:
-                linear-gradient(to top, rgba(0,0,0,0.2), rgba(0,0,0,0.6)),
-                url("images/graph-main.jpg");
             background-size: cover;
             background-position: center;
-            position: relative;
-            overflow: hidden;
         }
 
-        .hero-graph::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background-image: linear-gradient(135deg, rgba(34,197,94,0.2), transparent);
-            mix-blend-mode: screen;
-        }
-
-        .hero-stat-row {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 14px;
-            font-size: 0.8rem;
-            color: #9ca3af;
-        }
-
-        .hero-pill {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 4px 10px;
-            border-radius: 999px;
-            background: rgba(15,118,110,0.25);
-            font-size: 0.78rem;
-            color: #a5f3fc;
-        }
-
-        /* ------- שלוש עמודות – על הפרויקט / הטוקן / הכימיה ------- */
-
+        /* THREE CARDS */
         .grid-3 {
             display: grid;
-            grid-template-columns: repeat(3, minmax(0,1fr));
+            grid-template-columns: repeat(3,1fr);
             gap: 24px;
         }
 
         .card {
             background: radial-gradient(circle at top, rgba(34,197,94,0.13), rgba(15,23,42,0.96));
             border-radius: 20px;
-            padding: 18px 18px 20px;
+            padding: 20px;
             border: 1px solid rgba(55,65,81,0.9);
             box-shadow: 0 18px 40px rgba(0,0,0,0.65);
-            position: relative;
-            overflow: hidden;
         }
 
-        .card h3 {
-            font-size: 1.1rem;
-            margin-bottom: 10px;
-        }
-
-        .card p {
-            font-size: 0.94rem;
-            color: #e5e7eb;
-        }
-
-        .card small {
-            font-size: 0.8rem;
-            color: #9ca3af;
-        }
-
-        .card::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at top left, rgba(34,211,238,0.18), transparent 55%);
-            opacity: 0;
-            transition: opacity .25s ease-out;
-        }
-
-        .card:hover::after {
-            opacity: 1;
-        }
-
-        /* ------- גרפים / גלריה ------- */
-
+        /* GRAPH GRID */
         .graph-grid {
             display: grid;
-            grid-template-columns: repeat(3, minmax(0,1fr));
+            grid-template-columns: repeat(3,1fr);
             gap: 16px;
         }
 
         .graph-card {
-            position: relative;
             border-radius: 18px;
             overflow: hidden;
             border: 1px solid rgba(55,65,81,0.9);
-            background: #020617;
         }
 
         .graph-card img {
-            display: block;
             width: 100%;
             height: 170px;
             object-fit: cover;
@@ -313,14 +208,12 @@
             border-radius: 999px;
             font-size: 0.78rem;
             background: rgba(15,23,42,0.9);
-            border: 1px solid rgba(148,163,184,0.6);
         }
 
-        /* ------- "ציוצי קהילה" ------- */
-
+        /* TWEETS */
         .tweet-grid {
             display: grid;
-            grid-template-columns: repeat(2,minmax(0,1fr));
+            grid-template-columns: repeat(2,1fr);
             gap: 20px;
         }
 
@@ -329,103 +222,35 @@
             padding: 14px 16px;
             background: radial-gradient(circle at top left, rgba(34,197,94,0.18), rgba(15,23,42,0.96));
             border: 1px solid rgba(55,65,81,0.95);
-            font-size: 0.9rem;
         }
 
-        .tweet-header {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 8px;
-        }
-
-        .tweet-avatar {
-            width: 34px;
-            height: 34px;
-            border-radius: 50%;
-            background: radial-gradient(circle at top, #22d3ee, #22c55e);
-        }
-
-        .tweet-meta {
-            font-size: 0.78rem;
-            color: #9ca3af;
-        }
-
-        .hashtags {
-            margin-top: 10px;
-            font-size: 0.8rem;
-            color: #a5f3fc;
-        }
-
-        /* ------- מפת דרכים ------- */
-
+        /* ROADMAP */
         .roadmap {
             display: grid;
-            grid-template-columns: repeat(3,minmax(0,1fr));
+            grid-template-columns: repeat(3,1fr);
             gap: 18px;
         }
 
         .phase {
-            padding: 16px 16px 18px;
+            padding: 18px;
             border-radius: 18px;
             border: 1px solid rgba(55,65,81,0.9);
-            background: linear-gradient(to top, rgba(15,23,42,0.95), rgba(15,23,42,0.8));
-            font-size: 0.9rem;
         }
 
-        .phase h3 {
-            font-size: 1rem;
-            margin-bottom: 6px;
-        }
-
-        .phase ul {
-            padding-right: 18px;
-            margin: 0;
-        }
-
-        .phase li {
-            margin-bottom: 6px;
-        }
-
-        /* ------- קטע סיום / הצטרפות ------- */
-
+        /* FINAL CTA */
         .cta-final {
             text-align: center;
-            background: radial-gradient(circle at top, rgba(34,197,94,0.18), rgba(15,23,42,0.96));
             border-radius: 26px;
-            padding: 28px 20px 30px;
-            border: 1px solid rgba(55,65,81,0.95);
+            padding: 30px;
+            background: radial-gradient(circle at top, rgba(34,197,94,0.18), rgba(15,23,42,0.96));
         }
 
-        .cta-final p {
-            max-width: 40em;
-            margin: 0 auto 18px;
-            color: #e5e7eb;
-        }
-
-        footer {
-            border-top: 1px solid rgba(31,41,55,0.9);
-            padding: 18px 20px 26px;
-            font-size: 0.8rem;
-            text-align: center;
-            color: #6b7280;
-        }
-
-        /* ------- רספונסיביות ------- */
-
-        @media (max-width: 900px) {
-            .hero {
-                grid-template-columns: minmax(0,1fr);
-            }
-            .hero-visual {
-                order: -1;
-            }
+        @media (max-width:900px){
+            .hero { grid-template-columns: 1fr; }
             .grid-3,
             .graph-grid,
             .tweet-grid,
-            .roadmap {
-                grid-template-columns: minmax(0,1fr);
-            }
+            .roadmap { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -439,15 +264,13 @@
         </div>
 
         <nav>
-            <a href="#hero">בית</a>
-            <a href="#about">על הפרויקט</a>
-            <a href="#token">הטוקן</a>
-            <a href="#graphs">גרפים</a>
-            <a href="#community">הקהילה</a>
-            <a href="#roadmap">מפת דרכים</a>
-            <a class="nav-cta" href="https://twitter.com/ablockvision" target="_blank" rel="noopener">
-                לטוויטר
-            </a>
+            <a href="#hero">Home</a>
+            <a href="#about">Project</a>
+            <a href="#token">Token</a>
+            <a href="#graphs">Charts</a>
+            <a href="#community">Community</a>
+            <a href="#roadmap">Roadmap</a>
+            <a class="nav-cta" href="https://twitter.com/ablockvision" target="_blank">Twitter</a>
         </nav>
     </div>
 </header>
@@ -457,289 +280,194 @@
     <!-- HERO -->
     <section id="hero" class="hero">
         <div>
-            <div class="hero-badge">
-                🚀 BLOCKVISION · AI • Meme Coin • Community
-            </div>
+            <div class="hero-badge">🚀 BLOCKVISION • AI • Meme Coin • Community</div>
 
             <h1 class="hero-title">
-                הלווייתן שלנו זז ביחד,<br>
-                <span class="accent">לא שוחה לבד.</span>
+                Our whale moves together —  
+                <span class="accent">never alone.</span>
             </h1>
 
             <p class="hero-subtitle">
-                BLOCKVISION הוא ממקוין קהילתי שנולד מהשוק, מהגרפים ומהאמת:
-                כסף חכם זז ביחד. אנחנו משלבים קריפטו, אינטליגנציה מלאכותית ומסחר
-                ממוקד מומנטום כדי ליצור כוח אחד גדול – קהילה שמרוויחה ביחד.
+                BLOCKVISION is a community–driven meme coin built on movement, momentum and market truth.  
+                We combine crypto, AI, robotics–inspired discipline, and real market flow to create one united force:
+                a community that earns together.
             </p>
 
             <div class="hero-buttons">
-                <!-- קישור לטוויטר -->
-                <a class="btn-primary"
-                   href="https://twitter.com/ablockvision"
-                   target="_blank"
-                   rel="noopener">
-                    עקבו אחרי BLOCKVISION בטוויטר (X)
+                <a class="btn-primary" href="https://twitter.com/ablockvision" target="_blank">
+                    Follow BLOCKVISION on Twitter (X)
                 </a>
 
-                <!-- קישור למטבע – החלף לכתובת האמיתית -->
-                <a class="btn-secondary"
-                   href="https://example.com/blockvision-token"
-                   target="_blank"
-                   rel="noopener">
-                    💰 קניית המטבע (DAPP / DEX)
+                <a class="btn-secondary" href="https://example.com/blockvision-token" target="_blank">
+                    💰 Buy the Token (DEX / Dapp)
                 </a>
             </div>
 
             <div class="hero-meta">
-                🔔 רק מי שעוקב בזמן אמת מקבל את האזעקות המוקדמות, הגרפים והעדכונים הקריטיים.
+                🔔 Early alerts, charts and momentum signals drop LIVE on Twitter — stay sharp.
             </div>
         </div>
 
         <aside class="hero-visual">
-            <h3>מצב השוק – מבט קהילתי</h3>
-            <small>לא המלצה. אנחנו קוראים את הגרף, לא את החלומות.</small>
+            <h3>Market Snapshot</h3>
+            <small>Not financial advice — we read charts, not dreams.</small>
 
-            <div class="hero-graph">
-                <!--
-                  שים פה תמונה של גרף אמיתי:
-                  ../images/graph-main.jpg
-                  או כל תמונה אחרת מהטוויטר שלך
-                -->
-            </div>
-
-            <div class="hero-stat-row">
-                <div>
-                    🧠 AI + קריאה אנושית<br>
-                    <span class="tagline">רובוטיקה, חלקיקים, מומנטום – הכול מתרגם לגרף אחד.</span>
-                </div>
-                <div class="hero-pill">
-                    🐋 קהילה = לווייתן
-                </div>
-            </div>
+            <div class="hero-graph" style="background-image:url('images/graph-main.jpg');"></div>
         </aside>
     </section>
 
-    <!-- על הפרויקט / הטוקן / פילוסופיה -->
+    <!-- PROJECT -->
     <section id="about">
-        <h2>Block Vision – למה נולדנו?</h2>
+        <h2>Why BLOCKVISION?</h2>
         <p class="tagline">
-            המטרה פשוטה: לקחת את כל האנרגיה של ממקוין, לחבר אותה לידע אמיתי ולשוק חי – ולהפוך אותה
-            לכלי שעובד עבור הקהילה, לא רק עבור גולשים אקראיים.
+            Our mission is simple: turn meme energy into structured movement.  
+            No hype for hype’s sake — real flow, real data, real timing.
         </p>
 
-        <div class="grid-3" style="margin-top:24px;">
+        <div class="grid-3">
             <div class="card">
-                <h3>ממקוין, בלי הבולשיט</h3>
-                <p>
-                    ממקוינס הם כבר לא בדיחה – הם שכבת אנרגיה שלמה בתוך האקו־סיסטם של קריפטו.
-                    אצלנו ההומור נשאר בממים, והמשחק האמיתי קורה בגרפים, בזרימת נזילות ובתזמון.
-                </p>
-                <small>אנחנו עובדים עם נתונים, לא עם פומו.</small>
+                <h3>Meme Coin, No Nonsense</h3>
+                <p>Meme coins aren’t a joke — they’re an energy layer inside crypto.  
+                We treat the memes lightly… but the charts seriously.</p>
             </div>
 
             <div class="card" id="token">
-                <h3>הטוקן BLOCKVISION</h3>
-                <p>
-                    טוקן מונע־קהילה, נבנה סביב רעיון של תנועה חכמה:
-                    כניסה מוקדמת, קריאה של מומנטום, יציאה מדויקת. כל ההודעות
-                    הקריטיות – בטוויטר, בזמן אמת, בלי רעש מיותר.
-                </p>
-                <small>Contract address יתפרסם רק בערוצים הרשמיים.</small>
+                <h3>The BLOCKVISION Token</h3>
+                <p>Community-powered. Built around early entry, precise timing and unified movement.  
+                Critical alerts drop only on official channels.</p>
             </div>
 
             <div class="card">
-                <h3>AI, רובוטיקה וחלקיקים</h3>
-                <p>
-                    ההשראה מגיעה מצוותי הנדסה ורובוטיקה וחקר חלקיקים: חשיבה מדויקת,
-                    ניסוי, מדידה ושיפור מתמיד. אותו עיקרון עובד גם על הגרף –
-                    כל נר הוא דאטה.
-                </p>
-                <small>חדשנות אמיתית מתחילה מהתנהגות בשטח.</small>
+                <h3>AI, Robotics & Particle Thinking</h3>
+                <p>Inspired by real engineering teams — precision, measurement and iteration.  
+                Every candle is data. Every move is intentional.</p>
             </div>
         </div>
     </section>
 
-    <!-- גרפים / גלריה -->
+    <!-- CHARTS -->
     <section id="graphs">
-        <h2>גרפים, ויז'ן ותנועה</h2>
-        <p class="tagline">
-            אנחנו חיים על הגרף. כל תמונה היא רגע בשוק – לא רק עיצוב יפה.
-            כאן תוכל להעלות צילומי מסך אמיתיים מהטוויטר: עדכונים, גרפים, שיאים ונפילות.
-        </p>
+        <h2>Charts & Market Vision</h2>
+        <p class="tagline">Upload real screenshots here from your Twitter posts.</p>
 
-        <div class="graph-grid" style="margin-top:22px;">
-            <!-- החלף את ה-src לתמונות מהטוויטר שלך -->
+        <div class="graph-grid">
             <div class="graph-card">
-                <img src="images/graph1.jpg" alt="גרף עלייה חדה">
+                <img src="images/graph1.jpg">
                 <div class="graph-label">🚀 Meme Season Mode</div>
             </div>
             <div class="graph-card">
-                <img src="images/graph2.jpg" alt="גרף תנודתיות">
-                <div class="graph-label">⚡ High-Voltage Momentum</div>
+                <img src="images/graph2.jpg">
+                <div class="graph-label">⚡ High Voltage Flow</div>
             </div>
             <div class="graph-card">
-                <img src="images/graph3.jpg" alt="גרף ספירלה">
-                <div class="graph-label">🐋 Community Flow</div>
+                <img src="images/graph3.jpg">
+                <div class="graph-label">🐋 Whale Movement</div>
             </div>
         </div>
     </section>
 
-    <!-- קהילה / "ציוצים" -->
+    <!-- COMMUNITY TWEETS -->
     <section id="community">
-        <h2>הקהילה – הכוח האמיתי</h2>
+        <h2>The Community — Our Real Power</h2>
         <p class="tagline">
-            אין פה "אנחנו ואתם". כולנו גוף אחד – לווייתן שמן, אך חד, שמחליט לזוז ביחד.
-            מי שנכנס – נכנס בשביל דרך, לא בשביל פליק אחד.
+            We don’t do “team vs holders.”  
+            We move as one whale — heavy, smart and coordinated.
         </p>
 
-        <div class="tweet-grid" style="margin-top:22px;">
-            <article class="tweet-card">
-                <div class="tweet-header">
-                    <div class="tweet-avatar"></div>
-                    <div>
-                        <strong>block vision</strong><br>
-                        <span class="tweet-meta">@ablockvision · עדכון קהילה</span>
-                    </div>
-                </div>
+        <div class="tweet-grid">
+            <div class="tweet-card">
+                <strong>@blockvision</strong>
                 <p>
-                    "ממקוינס הם לא בדיחה – הם חלק מאקו־סיסטם שאנחנו בונים.
-                    אנחנו עובדים עם צוותים אמיתיים, פרויקטים עם רקורד של
-                    market caps במיליונים, ועם קהילה שמבינה שזה מרתון חכם,
-                    לא רולטה."
+                    “Meme coins aren’t a joke — they’re part of an ecosystem we’re actively building.  
+                    Momentum, robotics-level thinking and real data drive everything we do.”
                 </p>
-                <div class="hashtags">
-                    #BLOCKVISION #MemeCoins #Crypto #AI #Robotics
-                </div>
-            </article>
+            </div>
 
-            <article class="tweet-card">
-                <div class="tweet-header">
-                    <div class="tweet-avatar"></div>
-                    <div>
-                        <strong>block vision</strong><br>
-                        <span class="tweet-meta">@ablockvision · תנועת שוק</span>
-                    </div>
-                </div>
+            <div class="tweet-card">
+                <strong>@blockvision</strong>
                 <p>
-                    "זרימת הנזילות זזה לממקוינס. כשמייג'ורס נרגעים – מתחיל
-                    המשחק האמיתי. פה נוצרות קפיצות חדות. אנחנו כאן כדי לקרוא
-                    את הגרף ביחד, להיכנס מוקדם ולצאת בלי דרמות."
+                    “Liquidity is rotating fast into meme coins.  
+                    Majors cool — microcaps wake up.  
+                    This is where early entries matter.”
                 </p>
-                <div class="hashtags">
-                    #Momentum #AltSeason #BullRun #Community
-                </div>
-            </article>
+            </div>
 
-            <article class="tweet-card">
-                <div class="tweet-header">
-                    <div class="tweet-avatar"></div>
-                    <div>
-                        <strong>block vision</strong><br>
-                        <span class="tweet-meta">@ablockvision · הכרזה</span>
-                    </div>
-                </div>
+            <div class="tweet-card">
+                <strong>@blockvision</strong>
                 <p>
-                    "הטוקן BLOCKVISION נבנה מתוך הקהילה – לא להיפך.
-                    רק מי שעוקב אחרי הערוצים הרשמיים מקבל את ה־alpha 
-                    בזמן. אין קבוצות צד, אין דילים מתחת לשולחן."
+                    “The BLOCKVISION token is fully community-driven.  
+                    No side deals, no hidden groups — only transparent alerts.”
                 </p>
-                <div class="hashtags">
-                    #NewToken #Launch #Alpha #CryptoSignals
-                </div>
-            </article>
+            </div>
 
-            <article class="tweet-card">
-                <div class="tweet-header">
-                    <div class="tweet-avatar"></div>
-                    <div>
-                        <strong>block vision</strong><br>
-                        <span class="tweet-meta">@ablockvision · משפחת הלווייתן</span>
-                    </div>
-                </div>
+            <div class="tweet-card">
+                <strong>@blockvision</strong>
                 <p>
-                    "כל סיפור רווח של חבר קהילה הוא הדלק שלנו.
-                    אנחנו פה כדי להוביל, להסביר, להראות ולשדר:
-                    Real people. Real profits. Real growth."
+                    “Real people. Real profits. Real growth.  
+                    The wins of our members fuel the entire project.”
                 </p>
-                <div class="hashtags">
-                    #CommunityFirst #BlockVisionFamily #RealGains
-                </div>
-            </article>
-        </div>
-
-        <div style="margin-top:18px; font-size:0.85rem; color:#9ca3af;">
-            לעוד עדכונים חיים, גרפים וסיגנלים –  
-            <a href="https://twitter.com/ablockvision" target="_blank" rel="noopener" class="accent">
-                עקבו אחרי BLOCKVISION בטוויטר →
-            </a>
+            </div>
         </div>
     </section>
 
-    <!-- Roadmap -->
+    <!-- ROADMAP -->
     <section id="roadmap">
-        <h2>מפת דרכים – לאן אנחנו זזים?</h2>
-        <p class="tagline">
-            העולם משתנה מהר, ולכן גם המפה שלנו דינמית. אבל העקרונות נשארים:
-            שקיפות, קהילה, ותנועה חכמה בשוק.
-        </p>
+        <h2>Roadmap</h2>
 
-        <div class="roadmap" style="margin-top:22px;">
+        <div class="roadmap">
             <div class="phase">
-                <h3>שלב I – בניית בסיס</h3>
+                <h3>Phase I – Foundation</h3>
                 <ul>
-                    <li>השקת ערוצי טוויטר ורשתות</li>
-                    <li>צמיחה אורגנית של הקהילה והמאמינים הראשונים</li>
-                    <li>תוכן יומי: ניתוח שוק, גרפים ומומנטום</li>
-                    <li>הכנת טוקנומיקס ושקיפות על החזון</li>
+                    <li>Twitter launch & brand identity</li>
+                    <li>Organic community growth</li>
+                    <li>Daily chart updates & market flow</li>
+                    <li>Tokenomics preparation</li>
                 </ul>
             </div>
+
             <div class="phase">
-                <h3>שלב II – השקת הטוקן</h3>
+                <h3>Phase II – Token Launch</h3>
                 <ul>
-                    <li>פרסום Contract Address בערוצים הרשמיים בלבד</li>
-                    <li>השקה ב־DEX / CEX נבחרים</li>
-                    <li>קמפיין ממוקד לקהילה – לא "שילה" עיוורת</li>
-                    <li>בניית לוח זמנים לעדכונים ו־burns / utilities</li>
+                    <li>Official contract release</li>
+                    <li>DEX/CEX listings</li>
+                    <li>Community-first marketing</li>
+                    <li>Utility & burn schedule</li>
                 </ul>
             </div>
+
             <div class="phase">
-                <h3>שלב III – הרחבת הוויז'ן</h3>
+                <h3>Phase III – Expansion</h3>
                 <ul>
-                    <li>שיתופי פעולה עם פרויקטים בעולם AI ורובוטיקה</li>
-                    <li>כלי אנליזה קהילתי לגרפים ומומנטום</li>
-                    <li>אירועי קהילה, תחרויות ו־rewards לבוני תוכן</li>
-                    <li>המשך בניית BLOCKVISION כמותג שוק מוביל</li>
+                    <li>Partnerships in AI & robotics</li>
+                    <li>Community analytics tools</li>
+                    <li>Creator rewards & competitions</li>
+                    <li>Strong global brand positioning</li>
                 </ul>
             </div>
         </div>
     </section>
 
-    <!-- CTA סופי -->
+    <!-- FINAL CTA -->
     <section>
         <div class="cta-final">
-            <h2>אנחנו לווייתן טוב – שמן, חכם ומאוחד.</h2>
+            <h2>We are a good whale — united, smart and moving together.</h2>
             <p>
-                אם האג'נדה שלך היא לעשות כסף ביחד, להיות בזמן על הגרף,
-                להבין מה קורה מאחורי הקלעים של השוק ולהפוך לחלק מקהילה שחושבת
-                קדימה – BLOCKVISION נבנה בשבילך.
+                If your mission is to grow together, catch momentum early,  
+                and become part of a coordinated community — BLOCKVISION was built for you.
             </p>
-            <div class="hero-buttons" style="justify-content:center; margin-top:10px;">
-                <a class="btn-primary"
-                   href="https://twitter.com/ablockvision"
-                   target="_blank"
-                   rel="noopener">
-                    הצטרפות לטוויטר הרשמי
+
+            <div class="hero-buttons" style="justify-content:center;">
+                <a class="btn-primary" href="https://twitter.com/ablockvision" target="_blank">
+                    Join us on Twitter
                 </a>
-                <a class="btn-secondary"
-                   href="https://example.com/blockvision-token"
-                   target="_blank"
-                   rel="noopener">
-                    🔗 מעבר לעמוד המטבע
+
+                <a class="btn-secondary" href="https://example.com/blockvision-token" target="_blank">
+                    🔗 Token Page
                 </a>
             </div>
             <div style="margin-top:12px; font-size:0.8rem; color:#9ca3af;">
-                אין באמור ייעוץ השקעות. כל אחד אחראי על ההחלטות והסיכונים שלו.  
-                אנחנו כאן כדי לזוז חכם – לא להבטיח חלומות.
+                Not financial advice. Everyone manages their own risk.  
+                We move smart — not blind.
             </div>
         </div>
     </section>
@@ -747,7 +475,7 @@
 </main>
 
 <footer>
-    © כל הזכויות שמורות – BLOCKVISION · נבנה לקהילה, לא ללבד · 2025
+    © BLOCKVISION • Built for the community • 2025
 </footer>
 
 </body>
