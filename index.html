@@ -3,107 +3,221 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MemeCoin - דף הנחיתה הרשמי</title>
+    <title>שולי שטרית – מעצבת שיער מומחית בגוונים</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
             margin: 0;
-            background: #f8f8f8;
-            text-align: center;
+            font-family: "Alef", sans-serif;
+            background: #fafafa;
+            color: #333;
+            line-height: 1.6;
         }
         header {
-            background: #ffdf3c;
-            padding: 60px 20px;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            padding: 80px 20px;
+            text-align: center;
         }
-        h1 {
+        header h1 {
+            font-size: 3.2rem;
             margin: 0;
-            font-size: 50px;
         }
-        p {
-            font-size: 20px;
-            color: #333;
+        header p {
+            font-size: 1.4rem;
+            margin-top: 15px;
         }
-        .btn {
-            display: inline-block;
-            padding: 15px 35px;
-            background: #000;
-            color: #fff;
-            border-radius: 10px;
-            margin-top: 20px;
+        nav {
+            background: #fff;
+            padding: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        nav a {
+            margin: 0 15px;
             text-decoration: none;
-            font-size: 22px;
+            color: #444;
+            font-weight: bold;
         }
         section {
-            padding: 40px 20px;
+            padding: 60px 20px;
+            max-width: 1100px;
+            margin: auto;
         }
-        .box {
-            max-width: 650px;
-            margin: 20px auto;
+        .columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        .col {
             background: #fff;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 0 12px rgba(0,0,0,0.1);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        }
+        h2 {
+            margin-bottom: 25px;
+            font-size: 2rem;
+            color: #444;
+        }
+        .articles .article {
+            background: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .price-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .price-table th, .price-table td {
+            padding: 14px;
+            border-bottom: 1px solid #ddd;
+        }
+        .price-table th {
+            background: #ffe4e1;
         }
         footer {
-            margin-top: 40px;
-            padding: 25px;
-            background: #e2e2e2;
-        }
-        .mint-box {
-            font-size: 20px;
-            background: #f0f0f0;
-            padding: 15px;
-            border-radius: 10px;
-            font-weight: bold;
-            margin-top: 15px;
-            word-break: break-all;
+            background: #333;
+            color: #fff;
+            padding: 40px;
+            text-align: center;
+            margin-top: 60px;
         }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>🚀 MemeCoin</h1>
-    <p>המטבע הכי מצחיק, הכי ויראלי, הכי מהפכני!</p>
-</header>
+    <!-- תפריט -->
+    <nav>
+        <a href="#about">על שולי</a>
+        <a href="#columns">מומחיות</a>
+        <a href="#articles">כתבות</a>
+        <a href="#prices">מחירון</a>
+        <a href="#contact">צור קשר</a>
+    </nav>
 
-<section>
-    <div class="box">
-        <h2>✨ מה זה MemeCoin?</h2>
-        <p>המטבע שנולד מהקהילה — וגדל בזכות ההייפ. פשוט, כיף ובלתי ניתן לעצירה.</p>
-    </div>
+    <!-- כותרת -->
+    <header>
+        <h1>שולי שטרית</h1>
+        <p>מעצבת שיער עלית, מומחית לגוונים וכימיה – 26 שנות ניסיון באילת עיר הנצח</p>
+    </header>
 
-    <div class="box">
-        <h2>🔥 למה להצטרף?</h2>
+    <!-- על שולי -->
+    <section id="about">
+        <h2>על שולי שטרית</h2>
         <p>
-            ✔ קהילה חזקה  
-            ✔ פוטנציאל ויראלי  
-            ✔ שקיפות מלאה  
-            ✔ כיף וסטייל של ממים 😎  
+            שולי שטרית היא אחת ממעצבות השיער המוערכות בישראל. עם ניסיון של 26 שנה בעולם השיער,
+            התמחות עמוקה בכימיה ובגוונים מתקדמים, ואלפי לקוחות מרוצות מכל רחבי הארץ – שולי בנתה לעצמה שם של מצוינות,
+            דיוק ואמנות.  
         </p>
-    </div>
+        <p>
+            הסטודיו של שולי ממוקם בעיר אילת, מקום של אור, יצירה וחופש – והיא מביאה את כל הטוב הזה לשיער של כל אחת שמתיישבת מולה.
+        </p>
+    </section>
 
-    <div class="box" id="mint">
-        <h2>💰 כתובת המינט (Mint Address)</h2>
-        <p>כשתפיק את המטבע — פשוט תדביק כאן את ה־Mint Address:</p>
+    <!-- שש עמודות תוכן -->
+    <section id="columns">
+        <h2>מכל הזוויות – שולי שטרית</h2>
 
-        <!-- כאן תכניס את כתובת המינט שלך -->
-        <div class="mint-box">
-            כאן יופיע המינט שלך.  
-            דוגמה:  
-            <br> <span style="color:#888;">(הדבק כאן כשהמטבע מוכן)</span>
+        <div class="columns">
+            <div class="col">
+                <h3>ניסיון של 26 שנה</h3>
+                <p>מאות שעות עבודה, אלפי לקוחות, השתלמויות בינלאומיות וטכניקות מתקדמות – הכל מתנקז לדיוק מושלם.</p>
+            </div>
+            <div class="col">
+                <h3>מומחית בכימיה</h3>
+                <p>התאמת צבע מדויקת לשיער ולקרקפת, שימוש בחומרים האיכותיים ביותר ושמירה על בריאות השערה.</p>
+            </div>
+            <div class="col">
+                <h3>גוונים בהתאמה אישית</h3>
+                <p>אומברה, בלאיאז', מראה טבעי, מראה זוהר – כל לקוחה והגוונים שנולדו בשבילה.</p>
+            </div>
+            <div class="col">
+                <h3>עבודה עם החומר</h3>
+                <p>שליטה מלאה בכימיה של צבעים, חמצנים ושיער פגום – לשיקום מדויק ותוצאות מושלמות.</p>
+            </div>
+            <div class="col">
+                <h3>חדשנות מתמדת</h3>
+                <p>שולי מקפידה להתעדכן בטרנדים, בשיטות ובטכנולוגיות החדשות ביותר בעולם השיער.</p>
+            </div>
+            <div class="col">
+                <h3>סטודיו באילת</h3>
+                <p>מקום קסום שבו יופי, שלווה ומקצועיות מתחברים לחוויה אחת שלא תרצי לשכוח.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- כתבות (פיקטיביות/placeholder) -->
+    <section id="articles" class="articles">
+        <h2>כתבות ומאמרים על שולי</h2>
+
+        <div class="article">
+            <h3>״מלכת הגוונים של אילת״ – מגזין יופי (כתבה לדוגמה)</h3>
+            <p>
+                בכתבה מקיפה שפורסמה לאחרונה, הוכתרה שולי כאחת ממעצבות השיער המשפיעות בישראל, בזכות הדיוק הטכני והראייה האמנותית שלה.
+            </p>
         </div>
 
-        <a class="btn" href="#">קנה את המטבע (בקרוב)</a>
-    </div>
-</section>
+        <div class="article">
+            <h3>״האישה שמבינה שיער כמו מדע״ – מגזין אופנה (מאמר דמה)</h3>
+            <p>
+                המאמר מדבר על יכולתה הנדירה לשלב בין הבנה מדעית עמוקה לכישרון יצירתי שאי אפשר ללמד.
+            </p>
+        </div>
 
-<footer>
-    © 2025 MemeCoin  
-    <br>
-    הצטרפו לקהילה:  
-    <a href="#">טוויטר</a> | <a href="#">טלגרם</a> | <a href="#">דיסקורד</a>
-</footer>
+        <div class="article">
+            <h3>ראיון השראה – ״אילת המודרנית״ (תוכן לדוגמה)</h3>
+            <p>
+                שולי מספרת על הדרך, החזון ועל מה שהופך כל לקוחה ליצירת אמנות בפני עצמה.
+            </p>
+        </div>
+    </section>
+
+    <!-- מחירון -->
+    <section id="prices">
+        <h2>מחירון</h2>
+        <table class="price-table">
+            <tr>
+                <th>שירות</th>
+                <th>מחיר</th>
+            </tr>
+            <tr>
+                <td>גוונים בהתאמה אישית</td>
+                <td>₪450–₪900</td>
+            </tr>
+            <tr>
+                <td>בלאיאז'</td>
+                <td>₪550–₪1,200</td>
+            </tr>
+            <tr>
+                <td>תספורת נשים</td>
+                <td>₪120–₪200</td>
+            </tr>
+            <tr>
+                <td>טיפול שיקום כימי</td>
+                <td>₪300–₪600</td>
+            </tr>
+            <tr>
+                <td>החלקה אורגנית</td>
+                <td>₪700–₪1,400</td>
+            </tr>
+        </table>
+    </section>
+
+    <!-- צור קשר -->
+    <section id="contact">
+        <h2>צור קשר</h2>
+        <p>להזמנת תורים ושאלות:</p>
+        <p><strong>טלפון:</strong> 050-0000000</p>
+        <p><strong>אימייל:</strong> example@example.com</p>
+        <p><strong>מיקום:</strong> אילת, ישראל</p>
+    </section>
+
+    <footer>
+        © כל הזכויות שמורות – שולי שטרית, 2025
+    </footer>
 
 </body>
 </html>
