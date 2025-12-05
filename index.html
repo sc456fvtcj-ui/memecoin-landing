@@ -1,594 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>BLOCKVISION • Meme Coin War Engine</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<style>
-:root {
-  --green: #00ff88;
-  --green-soft: rgba(0,255,136,0.25);
-  --green-hard: #00ffb0;
-  --bg: #020304;
-  --bg2: #050b05;
-  --text: #e8ffe8;
-  --muted: #90a290;
-  --danger: #ff3355;
-  --card: rgba(0,25,0,0.7);
-}
-
-/* GLOBAL */
-*{box-sizing:border-box;margin:0;padding:0}
-body{
-  font-family:"Orbitron",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  background:radial-gradient(circle at top,#07140f 0,#020304 45%,#000 100%);
-  color:var(--text);
-  overflow-x:hidden;
-}
-a{text-decoration:none;color:inherit}
-
-/* BACKGROUND GRID */
-.bg-grid{
-  position:fixed;inset:0;pointer-events:none;z-index:0;
-  background-image:
-    linear-gradient(var(--green-soft) 1px,transparent 1px),
-    linear-gradient(90deg,var(--green-soft) 1px,transparent 1px);
-  background-size:60px 60px;
-  opacity:.18;
-  animation:gridMove 40s linear infinite;
-}
-@keyframes gridMove{
-  0%{transform:translate3d(0,0,0)}
-  100%{transform:translate3d(-60px,-60px,0)}
-}
-
-/* NAV */
-nav{
-  position:sticky;top:0;z-index:10;
-  display:flex;justify-content:space-between;align-items:center;
-  padding:12px 32px;
-  background:#000000cc;
-  backdrop-filter:blur(14px);
-  border-bottom:1px solid var(--green-soft);
-}
-nav img{width:52px;height:52px;border-radius:50%;box-shadow:0 0 22px var(--green-soft);}
-.nav-right{display:flex;align-items:center;gap:16px}
-.nav-links a{
-  margin:0 6px;font-size:.85rem;font-weight:600;color:var(--muted);
-  padding:4px 10px;border-radius:999px;transition:.18s;
-}
-.nav-links a:hover,.nav-links a.active{
-  color:var(--green-hard);background:rgba(0,255,136,0.08);
-}
-.badge-live{
-  font-size:.72rem;border-radius:999px;padding:3px 9px;
-  border:1px solid var(--green-soft);
-  display:flex;align-items:center;gap:5px;
-  background:rgba(0,0,0,.8);color:var(--green-hard);
-}
-.badge-dot{
-  width:7px;height:7px;border-radius:999px;background:var(--green);
-  box-shadow:0 0 16px var(--green);
-  animation:pulseDot 1.3s infinite;
-}
-@keyframes pulseDot{
-  0%,100%{transform:scale(1);opacity:1}
-  50%{transform:scale(1.7);opacity:.3}
-}
-
-/* HERO */
-.hero{
-  position:relative;z-index:1;
-  padding:100px 20px 80px;
-}
-.hero-inner{
-  max-width:1150px;margin:0 auto;
-  display:grid;grid-template-columns:minmax(0,1.2fr)minmax(0,1fr);gap:30px;
-}
-@media(max-width:900px){.hero-inner{grid-template-columns:1fr;padding-top:60px}}
-.hero-title{
-  font-size:clamp(2.6rem,4vw,3.2rem);
-  text-transform:uppercase;letter-spacing:.12em;
-  margin-bottom:14px;
-  background:linear-gradient(120deg,#fff,var(--green-hard),#b8ffd9);
-  -webkit-background-clip:text;color:transparent;
-  animation:titleGlow 4s ease-in-out infinite;
-}
-@keyframes titleGlow{
-  0%,100%{text-shadow:0 0 14px var(--green-soft);}
-  50%{text-shadow:0 0 32px var(--green);}
-}
-.hero-sub{
-  font-size:.98rem;color:var(--muted);
-  max-width:460px;line-height:1.7;margin-bottom:18px;
-}
-.hero-pills{
-  display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;
-}
-.pill{
-  font-size:.78rem;padding:7px 11px;border-radius:999px;
-  border:1px solid rgba(100,140,100,.8);
-  background:rgba(4,10,4,.9);color:var(--muted);
-}
-.pill span{color:var(--green-hard);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;}
-.hero-actions{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:12px}
-.btn{
-  padding:11px 20px;border-radius:999px;border:1px solid transparent;
-  font-size:.9rem;font-weight:700;cursor:pointer;
-  display:inline-flex;align-items:center;gap:6px;
-  transition:.18s;
-}
-.btn-primary{
-  background:linear-gradient(120deg,var(--green),var(--green-hard));
-  color:#010302;box-shadow:0 0 26px rgba(0,255,136,.55);
-}
-.btn-primary:hover{transform:translateY(-1px)scale(1.03);}
-.btn-outline{
-  border-color:rgba(130,150,130,.9);
-  background:rgba(0,0,0,.7);color:var(--muted);
-}
-.btn-outline:hover{border-color:var(--green);color:var(--green);}
-.hero-note{font-size:.8rem;color:var(--muted);}
-.hero-note span{color:var(--green);}
-
-/* HERO RIGHT – LIVE CHART + PRICE */
-.hero-right{display:flex;flex-direction:column;gap:14px}
-.chart-card{
-  border-radius:20px;background:radial-gradient(circle at top,#021a10,#020304 60%);
-  border:1px solid var(--green-soft);box-shadow:0 0 26px rgba(0,255,136,.2);
-  padding:14px 14px 12px;position:relative;overflow:hidden;
-}
-.chart-header{display:flex;justify-content:space-between;align-items:center;font-size:.8rem;}
-.chart-header-left span:first-child{
-  letter-spacing:.18em;text-transform:uppercase;color:var(--green-hard);font-size:.72rem;
-}
-.chart-header-left span:last-child{font-size:.95rem;font-weight:600;}
-.chart-header-right{text-align:right;color:var(--muted);font-size:.78rem;}
-.chart-header-right strong{color:var(--green);}
-.chart-chip{
-  display:inline-flex;align-items:center;gap:4px;
-  padding:3px 7px;border-radius:999px;font-size:.7rem;
-  background:rgba(0,0,0,.7);border:1px solid rgba(0,255,136,.4);
-}
-.chart-body{margin-top:10px;}
-#liveChart{width:100%;height:140px;background:radial-gradient(circle at bottom,#000,#020804 70%);border-radius:14px;}
-.chart-footer{
-  display:flex;justify-content:space-between;align-items:center;
-  font-size:.72rem;color:var(--muted);margin-top:8px;
-}
-.chart-bar{
-  width:60px;height:3px;border-radius:999px;
-  background:linear-gradient(90deg,#ffe66b,var(--green));
-}
-
-/* API widget */
-.api-card{
-  border-radius:14px;background:rgba(0,0,0,.7);border:1px solid var(--green-soft);
-  padding:10px 12px;font-size:.78rem;color:var(--muted);
-  display:flex;justify-content:space-between;align-items:center;gap:10px;
-}
-.api-price{font-size:1.1rem;color:var(--green-hard);font-weight:700;}
-.api-status-error{color:var(--danger);}
-
-/* SECTIONS */
-.section{
-  position:relative;z-index:1;
-  padding:70px 20px 40px;
-}
-.section-inner{max-width:1150px;margin:0 auto;}
-.section h2{
-  font-size:2rem;text-align:center;margin-bottom:20px;
-  text-shadow:0 0 12px var(--green-soft);
-}
-.card{
-  background:var(--card);
-  border-radius:14px;border:1px solid var(--green-soft);
-  padding:20px;margin-bottom:18px;
-}
-.card h3{color:var(--green-hard);margin-bottom:8px;font-size:1.05rem;}
-.card p{color:var(--muted);font-size:.9rem;line-height:1.7;}
-
-/* TOKENOMICS */
-.token-row{
-  display:flex;justify-content:space-between;font-size:.9rem;
-  border-bottom:1px dashed rgba(120,150,120,.7);
-  padding:7px 0;
-}
-.token-row strong{color:var(--text);}
-.token-bar{
-  height:9px;border-radius:999px;
-  background:linear-gradient(90deg,#033015,var(--green));box-shadow:0 0 16px rgba(0,255,136,.6);
-  margin-bottom:10px;
-}
-
-/* ROADMAP */
-.roadmap-item{
-  border-left:3px solid var(--green);padding-left:14px;margin:16px 0;
-}
-.roadmap-item h4{margin:0;color:var(--green-hard);font-size:.98rem;}
-.roadmap-item p{margin-top:5px;color:var(--muted);font-size:.86rem;}
-
-/* MINT */
-.mint-box{
-  background:#020402;border-radius:12px;
-  border:1px dashed var(--green);
-  padding:16px;margin-top:10px;font-family:monospace;
-  color:var(--green-hard);font-size:.85rem;
-}
-
-/* ABOUT */
-ul{list-style:none;padding-left:0;}
-ul li{color:var(--muted);padding:6px 0;font-size:.9rem;}
-
-/* FOOTER */
-footer{
-  padding:16px 20px;border-top:1px solid var(--green-soft);
-  text-align:center;color:var(--muted);font-size:.78rem;
-}
-
-/* ANIMATIONS / REVEAL */
-.fade{opacity:0;transform:translateY(24px);transition:.7s ease;}
-.fade.show{opacity:1;transform:translateY(0);}
-
-/* RESPONSIVE */
-@media(max-width:800px){
-  nav{padding:10px 14px;}
-  .nav-links{display:none;}
-  .hero{padding:80px 14px 50px;}
-  .section{padding-inline:14px;}
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BLOCKVISION • The New Era</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 </head>
+
 <body>
-<div class="bg-grid"></div>
 
-<nav>
-  <img src="logo.png" alt="BLOCKVISION logo">
-  <div class="nav-right">
-    <div class="nav-links">
-      <a href="#home" class="active">Home</a>
-      <a href="#tokenomics">Tokenomics</a>
-      <a href="#roadmap">Roadmap</a>
-      <a href="#about">About</a>
-      <a href="#mint">Mint</a>
-    </div>
-    <div class="badge-live">
-      <span class="badge-dot"></span>
-      Meme Season Waking Up
-    </div>
+<!-- BACKGROUND PARTICLES -->
+<canvas id="bg"></canvas>
+
+<header>
+  <div class="logo">
+    <img src="assets/logo.png" alt="BlockVision">
+    <h1>BLOCKVISION</h1>
   </div>
-</nav>
 
-<!-- HERO -->
-<section id="home" class="hero fade">
-  <div class="hero-inner">
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="roadmap.html">Roadmap</a>
+    <a href="tokenomics.html">Tokenomics</a>
+    <a href="https://twitter.com/ablockvision" target="_blank">@Twitter</a>
+  </nav>
+</header>
+
+<!-- HERO SECTION -->
+<section class="hero">
+  <h2 class="neon">THE FUTURE IS NOW</h2>
+  <p>We are the new wave of crypto innovation. Robotics, AI & Meme Power combined.</p>
+  <a href="https://twitter.com/ablockvision" target="_blank" class="cta">Join The Movement</a>
+</section>
+
+<!-- CHARTS SECTION -->
+<section class="charts">
+  <h2 class="section-title neon">LIVE MARKET DATA</h2>
+
+  <div class="chart-grid">
     <div>
-      <div class="pill" style="margin-bottom:10px;">
-        <span>LIVE FLOW</span>&nbsp; Rotation into meme coins detected.
-      </div>
-      <h1 class="hero-title">BLOCKVISION</h1>
-      <p class="hero-sub">
-        The Green Pump Meme Engine.  
-        When majors cool off, rotation begins — and the meme war room goes online.
-        We move like one coordinated whale, not scattered minnows.
-      </p>
-
-      <div class="hero-pills">
-        <div class="pill"><span>FLOW</span>&nbsp;Microcap rotations &amp; entries</div>
-        <div class="pill"><span>EDGE</span>&nbsp;AI + narrative-aware memecoins</div>
-        <div class="pill"><span>POWER</span>&nbsp;Community-sized liquidity</div>
-      </div>
-
-      <div class="hero-actions">
-        <button class="btn btn-primary" onclick="window.open('https://x.com/ablockvision','_blank')">
-          Follow on X (Twitter)
-        </button>
-        <button class="btn btn-outline" onclick="document.getElementById('mint').scrollIntoView({behavior:'smooth'})">
-          Official Mint (Soon)
-        </button>
-      </div>
-
-      <p class="hero-note">
-        Built for <span>people who feel the rotation</span> before the candle prints.
-      </p>
+      <h3>Bitcoin (BTC)</h3>
+      <canvas id="btcChart"></canvas>
     </div>
 
-    <div class="hero-right">
-      <div class="chart-card">
-        <div class="chart-header">
-          <div class="chart-header-left">
-            <span>LIVE SENTIMENT</span><br>
-            <span>BLOCKVISION Meme Momentum Index</span>
-          </div>
-          <div class="chart-header-right">
-            <strong id="livePriceLabel">$--.--</strong><br>
-            <span id="liveChangeLabel">Syncing with market...</span><br>
-            <span class="chart-chip">Using BTC as proxy until token launches</span>
-          </div>
-        </div>
-        <div class="chart-body">
-          <canvas id="liveChart"></canvas>
-          <div class="chart-footer">
-            <span>When liquidity wakes up, it doesn’t tiptoe — it sprints.</span>
-            <span class="chart-bar"></span>
-          </div>
-        </div>
-      </div>
+    <div>
+      <h3>Ethereum (ETH)</h3>
+      <canvas id="ethChart"></canvas>
+    </div>
 
-      <div class="api-card">
-        <div>
-          <div style="font-size:.8rem;">Market feed</div>
-          <div>Coingecko API · BTC → acts as meme-season heartbeat.</div>
-        </div>
-        <div id="apiStatus" class="api-price">…</div>
-      </div>
+    <div>
+      <h3>Ripple (XRP)</h3>
+      <canvas id="xrpChart"></canvas>
     </div>
   </div>
 </section>
 
-<!-- TOKENOMICS -->
-<section id="tokenomics" class="section fade">
-  <div class="section-inner">
-    <h2>Tokenomics</h2>
-    <div class="card">
-      <h3>Total Supply</h3>
-      <p>1,000,000,000 (1 Billion) – Simple, clean, and ready for chaos.</p>
-      <div class="token-bar" style="width:100%;"></div>
-    </div>
-
-    <div class="card">
-      <h3>Distribution Blueprint</h3>
-      <div class="token-row">
-        <strong>50% — Fair Launch</strong> <span>Community first entry</span>
-      </div>
-      <div class="token-bar" style="width:50%;"></div>
-
-      <div class="token-row">
-        <strong>30% — Liquidity</strong> <span>Deep meme war chest</span>
-      </div>
-      <div class="token-bar" style="width:30%;"></div>
-
-      <div class="token-row">
-        <strong>10% — CEX Listings</strong> <span>Expansion phase</span>
-      </div>
-      <div class="token-bar" style="width:10%;"></div>
-
-      <div class="token-row">
-        <strong>5% — Dev</strong> <span>Aligned, locked, long-term</span>
-      </div>
-      <div class="token-bar" style="width:5%;"></div>
-
-      <div class="token-row">
-        <strong>5% — Marketing</strong> <span>Memes, raids, raids, raids</span>
-      </div>
-      <div class="token-bar" style="width:5%;"></div>
-    </div>
-  </div>
-</section>
-
-<!-- ROADMAP -->
-<section id="roadmap" class="section fade">
-  <div class="section-inner">
-    <h2>Roadmap 2025</h2>
-
-    <div class="card">
-      <h3>Phase 1 — Awakening</h3>
-      <div class="roadmap-item">
-        <h4>Launch & Formation</h4>
-        <p>Website online, X account active, first community whale cluster forms.</p>
-      </div>
-      <div class="roadmap-item">
-        <h4>Signal Over Noise</h4>
-        <p>Clear narrative threads: meme season, rotation flows, microcap heat-map.</p>
-      </div>
-    </div>
-
-    <div class="card">
-      <h3>Phase 2 — Meme War</h3>
-      <div class="roadmap-item">
-        <h4>Viral Offensive</h4>
-        <p>Memes, threads, raids – BLOCKVISION becomes a recognizable signal on CT.</p>
-      </div>
-      <div class="roadmap-item">
-        <h4>Rotational Strikes</h4>
-        <p>Coordinated entries into high-conviction meme plays, documented moves.</p>
-      </div>
-    </div>
-
-    <div class="card">
-      <h3>Phase 3 — Domination</h3>
-      <div class="roadmap-item">
-        <h4>Listings & Expansion</h4>
-        <p>CEX listings, deeper liquidity, ecosystem tools and dashboards.</p>
-      </div>
-      <div class="roadmap-item">
-        <h4>The Meme Index</h4>
-        <p>Curated index of narrative-driven coins tracked by community.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section id="about" class="section fade">
-  <div class="section-inner">
-    <h2>About The Movement</h2>
-    <div class="card">
-      <h3>Philosophy</h3>
-      <ul>
-        <li>• We act early – we don’t chase fully printed candles.</li>
-        <li>• We move together – one coordinated presence.</li>
-        <li>• We rotate smart – capital follows narrative, not noise.</li>
-        <li>• We strike hard – when it’s time, it’s time.</li>
-        <li>• We win as a unit – no one left behind.</li>
-      </ul>
-    </div>
-
-    <div class="card">
-      <h3>Where to Follow</h3>
-      <p>All official communication starts from one place: the X account.</p>
-      <p style="margin-top:6px;">
-        <strong>X / Twitter:</strong>
-        <a href="https://x.com/ablockvision" target="_blank" style="color:var(--green-hard);">
-          @ablockvision
-        </a>
-      </p>
-    </div>
-  </div>
-</section>
-
-<!-- MINT -->
-<section id="mint" class="section fade">
-  <div class="section-inner">
-    <h2>Official Mint</h2>
-    <div class="card">
-      <h3>Contract Address</h3>
-      <p>Once the token launches, the only official contract will be displayed here.</p>
-      <div class="mint-box" id="mintBox">
-        // YOUR OFFICIAL CONTRACT GOES HERE<br>
-        // Example: So1anaMintAddre55abC123…<br><br>
-        <!-- אחרי שיהיה לך מינט, תחליף את הטקסט הזה בכתובת שלך -->
-      </div>
-      <p style="color:var(--danger);margin-top:10px;font-size:.85rem;">
-        Always double-check here before interacting. If it’s not on this page – it’s not official.
-      </p>
-    </div>
-  </div>
+<!-- COMMUNITY -->
+<section class="community">
+  <h2 class="neon">THE BLOCKVISION ARMY</h2>
+  <p>We move together. We win together. Momentum is built by the community — and we’re leading the charge.</p>
 </section>
 
 <footer>
-  © 2025 BLOCKVISION • Meme Pump War Engine
+  <p>© 2025 BLOCKVISION — All Rights Reserved</p>
 </footer>
 
-<script>
-// Scroll reveal
-document.addEventListener("DOMContentLoaded", () => {
-  const fades = document.querySelectorAll(".fade");
-  const onScroll = () => {
-    fades.forEach(el => {
-      const rect = el.getBoundingClientRect();
-      if (rect.top < window.innerHeight - 60) {
-        el.classList.add("show");
-      }
-    });
-  };
-  onScroll();
-  window.addEventListener("scroll", onScroll);
-});
+<script src="app.js"></script>
 
-// Live chart (fake but smooth)
-(function(){
-  const canvas = document.getElementById("liveChart");
-  if(!canvas) return;
-  const ctx = canvas.getContext("2d");
-  let width, height;
-  const points = [];
-  const maxPoints = 80;
-
-  function resize(){
-    width = canvas.clientWidth;
-    height = canvas.clientHeight;
-    canvas.width = width * window.devicePixelRatio;
-    canvas.height = height * window.devicePixelRatio;
-    ctx.setTransform(window.devicePixelRatio,0,0,window.devicePixelRatio,0,0);
-  }
-  window.addEventListener("resize", resize);
-  resize();
-
-  let value = 50;
-
-  function addPoint(newVal){
-    points.push(newVal);
-    if(points.length > maxPoints) points.shift();
-  }
-
-  function draw(){
-    if(!width || !height) return;
-    ctx.clearRect(0,0,width,height);
-
-    // grid
-    ctx.strokeStyle = "rgba(0,255,136,0.08)";
-    ctx.lineWidth = 1;
-    const stepX = 25;
-    const stepY = 20;
-    for(let x=0;x<width;x+=stepX){
-      ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,height);ctx.stroke();
-    }
-    for(let y=0;y<height;y+=stepY){
-      ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(width,y);ctx.stroke();
-    }
-
-    if(points.length<2) return;
-    const maxVal = Math.max(...points)+5;
-    const minVal = Math.min(...points)-5;
-    const range = maxVal-minVal || 1;
-
-    ctx.beginPath();
-    for(let i=0;i<points.length;i++){
-      const x = (i/(maxPoints-1))*width;
-      const y = height - ((points[i]-minVal)/range)*height;
-      if(i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
-    }
-    ctx.strokeStyle = "#00ff88";
-    ctx.lineWidth = 2;
-    ctx.shadowColor = "rgba(0,255,136,0.8)";
-    ctx.shadowBlur = 14;
-    ctx.stroke();
-    ctx.shadowBlur = 0;
-  }
-
-  function tick(){
-    // random walk
-    const drift = Math.random()*4-2;
-    value += drift;
-    if(value<20) value=20;
-    if(value>90) value=90;
-    addPoint(value);
-    draw();
-  }
-
-  for(let i=0;i<maxPoints;i++) addPoint(value);
-  setInterval(tick, 500);
-})();
-
-// Simple API fetch (BTC as proxy until you have your token)
-(function(){
-  const priceLabel = document.getElementById("livePriceLabel");
-  const changeLabel = document.getElementById("liveChangeLabel");
-  const status = document.getElementById("apiStatus");
-  if(!priceLabel || !status) return;
-
-  const API_URL =
-    "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd&include_24hr_change=true";
-
-  async function fetchPrice(){
-    try{
-      status.textContent = "Syncing…";
-      const res = await fetch(API_URL);
-      if(!res.ok) throw new Error("HTTP "+res.status);
-      const data = await res.json();
-      const price = data.bitcoin.usd;
-      const change = data.bitcoin.usd_24h_change;
-      priceLabel.textContent = "$" + price.toLocaleString();
-      const ch = change.toFixed(2);
-      changeLabel.textContent = (ch>=0?"+":"") + ch + "% 24h";
-      changeLabel.style.color = ch>=0 ? "#00ff88" : "#ff3355";
-      status.textContent = "LIVE";
-      status.style.color = "#00ff88";
-    }catch(e){
-      status.textContent = "DEMO MODE";
-      status.classList.add("api-status-error");
-      if(priceLabel.textContent === "$--.--"){
-        priceLabel.textContent = "$37,000+";
-        changeLabel.textContent = "Using demo price feed";
-      }
-    }
-  }
-
-  fetchPrice();
-  setInterval(fetchPrice, 30000);
-})();
-</script>
 </body>
 </html>
