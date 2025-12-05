@@ -1,0 +1,292 @@
+/* ====== GLOBAL ====== */
+:root {
+  --bg: #04040a;
+  --bg-soft: #060913;
+  --text: #f4f7ff;
+  --muted: #8b95b5;
+  --accent-green: #00ff88;
+  --accent-cyan: #00e5ff;
+  --accent-purple: #b768ff;
+  --accent-red: #ff3b6a;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: radial-gradient(circle at top, #101428 0, #04040a 45%, #000000 100%);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+/* ====== BACKGROUND CANVAS ====== */
+#bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* ====== HEADER / NAV ====== */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 32px;
+  backdrop-filter: blur(18px);
+  background: rgba(0, 0, 0, 0.82);
+  border-bottom: 1px solid rgba(0, 255, 136, 0.25);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo img {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  box-shadow: 0 0 20px rgba(0, 255, 136, 0.6);
+  object-fit: cover;
+}
+
+.logo h1 {
+  font-size: 1.1rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+nav a {
+  color: var(--muted);
+  text-decoration: none;
+  margin: 0 8px;
+  font-size: 0.86rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+  transition: 0.18s ease-out;
+}
+
+nav a:hover,
+nav a:focus {
+  color: var(--accent-cyan);
+  background: rgba(0, 229, 255, 0.1);
+}
+
+/* ====== HERO ====== */
+.hero {
+  padding: 90px 20px 70px;
+  text-align: center;
+}
+
+.hero h2 {
+  font-size: clamp(2.4rem, 4vw, 3.1rem);
+  margin-bottom: 10px;
+}
+
+.hero p {
+  max-width: 650px;
+  margin: 0 auto;
+  margin-bottom: 26px;
+  font-size: 0.98rem;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.neon {
+  text-shadow:
+    0 0 6px rgba(0, 255, 136, 0.6),
+    0 0 16px rgba(0, 229, 255, 0.6),
+    0 0 26px rgba(183, 104, 255, 0.7);
+  background: linear-gradient(120deg, #ffffff, var(--accent-cyan), var(--accent-purple));
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 26px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  background: linear-gradient(120deg, var(--accent-green), var(--accent-cyan));
+  color: #02030a;
+  font-size: 0.9rem;
+  font-weight: 700;
+  box-shadow: 0 0 24px rgba(0, 255, 136, 0.5);
+  cursor: pointer;
+  transition: 0.18s ease-out;
+}
+
+.cta:hover {
+  transform: translateY(-1px) scale(1.03);
+}
+
+/* ====== SECTIONS ====== */
+section {
+  position: relative;
+  z-index: 1;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 18px;
+}
+
+/* ====== CHARTS SECTION ====== */
+.charts {
+  padding: 40px 20px 70px;
+}
+
+.charts .section-title {
+  margin-bottom: 26px;
+}
+
+.chart-grid {
+  max-width: 1150px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.chart-grid > div {
+  background: rgba(7, 10, 20, 0.94);
+  border-radius: 16px;
+  padding: 16px 16px 12px;
+  border: 1px solid rgba(0, 229, 255, 0.32);
+  box-shadow: 0 0 20px rgba(0, 229, 255, 0.18);
+}
+
+.chart-grid h3 {
+  font-size: 0.95rem;
+  margin: 0 0 10px;
+  color: var(--accent-cyan);
+}
+
+/* ====== COMMUNITY SECTION ====== */
+.community {
+  padding: 60px 20px 80px;
+  text-align: center;
+}
+
+.community p {
+  max-width: 650px;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  font-size: 0.96rem;
+  color: var(--muted);
+}
+
+/* ====== ROADMAP PAGE ====== */
+.roadmap-page {
+  padding: 80px 20px 80px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.roadmap-page h2 {
+  text-align: center;
+  margin-bottom: 26px;
+}
+
+.roadmap-item {
+  background: rgba(7, 10, 19, 0.95);
+  border-radius: 14px;
+  border: 1px solid rgba(183, 104, 255, 0.4);
+  padding: 16px 18px 14px;
+  margin-bottom: 18px;
+  box-shadow: 0 0 18px rgba(183, 104, 255, 0.35);
+}
+
+.roadmap-item h3 {
+  margin: 0 0 6px;
+  font-size: 1rem;
+  color: var(--accent-purple);
+}
+
+.roadmap-item p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+/* ====== TOKENOMICS PAGE ====== */
+.tokenomics {
+  padding: 80px 20px 80px;
+  max-width: 740px;
+  margin: 0 auto;
+}
+
+.tokenomics h2 {
+  text-align: center;
+  margin-bottom: 22px;
+}
+
+.tokenomics ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.tokenomics li {
+  padding: 10px 12px;
+  margin-bottom: 10px;
+  background: rgba(7, 12, 22, 0.96);
+  border-radius: 12px;
+  border: 1px solid rgba(0, 255, 136, 0.32);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+/* ====== FOOTER ====== */
+footer {
+  padding: 14px 20px 18px;
+  border-top: 1px solid rgba(0, 255, 136, 0.24);
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--muted);
+  background: rgba(0, 0, 0, 0.85);
+}
+
+/* ====== REVEAL ANIMATION (scroll) ====== */
+.fade {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.fade.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 900px) {
+  header {
+    padding-inline: 14px;
+  }
+
+  .chart-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
