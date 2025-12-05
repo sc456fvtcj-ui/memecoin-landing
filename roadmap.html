@@ -1,55 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>BLOCKVISION • Roadmap</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 </head>
-
 <body>
+  <canvas id="bg"></canvas>
 
-<header>
-  <div class="logo">
-    <img src="assets/logo.png" alt="BlockVision">
-    <h1>BLOCKVISION</h1>
-  </div>
+  <header>
+    <div class="logo">
+      <div class="logo-mark"><span>B</span></div>
+      <div class="logo-text">
+        <h1>BLOCKVISION</h1>
+        <p>Meme • AI • Robotics • Crypto</p>
+      </div>
+    </div>
 
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="roadmap.html">Roadmap</a>
-    <a href="tokenomics.html">Tokenomics</a>
-  </nav>
-</header>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="roadmap.html">Roadmap</a>
+      <a href="tokenomics.html">Tokenomics</a>
+      <a href="https://twitter.com/ablockvision" target="_blank">@ablockvision</a>
+    </nav>
+  </header>
 
-<section class="roadmap-page">
-  <h2 class="neon">2025 ROADMAP</h2>
+  <main class="roadmap-page">
+    <h2 class="section-title neon fade">Roadmap 2025</h2>
 
-  <div class="roadmap-item">
-    <h3>Phase 1 – Ignition</h3>
-    <p>Community formation, strategic partnerships, Alpha signals & Twitter domination.</p>
-  </div>
+    <div class="roadmap-grid">
+      <article class="roadmap-item fade">
+        <h3>Phase 1 – Ignition</h3>
+        <ul>
+          <li>Twitter narrative building &amp; daily alpha threads.</li>
+          <li>Core community formation – the first wave of BLOCKVISION whales.</li>
+          <li>Stealth dev with robotics + AI partners.</li>
+        </ul>
+      </article>
 
-  <div class="roadmap-item">
-    <h3>Phase 2 – Token Launch</h3>
-    <p>Contract release, liquidity locking, CEX negotiations & influencer recruitment.</p>
-  </div>
+      <article class="roadmap-item fade">
+        <h3>Phase 2 – Token Launch</h3>
+        <ul>
+          <li>Smart contract deployment &amp; audited launch.</li>
+          <li>Liquidity lock &amp; anti-rug protection.</li>
+          <li>Listing on key DEXes, early CEX conversations.</li>
+        </ul>
+      </article>
 
-  <div class="roadmap-item">
-    <h3>Phase 3 – Expansion</h3>
-    <p>Robotics integrations, new utilities, NFT ecosystem and governance model.</p>
-  </div>
+      <article class="roadmap-item fade">
+        <h3>Phase 3 – Expansion</h3>
+        <ul>
+          <li>Utilities tied to AI insights &amp; robotics data feeds.</li>
+          <li>NFT access passes for private alpha &amp; deals.</li>
+          <li>Cross-chain expansion and partnerships.</li>
+        </ul>
+      </article>
 
-  <div class="roadmap-item">
-    <h3>Phase 4 – Global Dominance</h3>
-    <p>Institutional partnerships, Tier-1 listings, community DAO, AI-powered insights.</p>
-  </div>
+      <article class="roadmap-item fade">
+        <h3>Phase 4 – Dominance</h3>
+        <ul>
+          <li>Tier-1 listings &amp; institutional attention.</li>
+          <li>Community DAO and treasury for ecosystem growth.</li>
+          <li>BLOCKVISION as a full-stack brand across Web3.</li>
+        </ul>
+      </article>
+    </div>
+  </main>
 
-</section>
+  <footer>
+    <p>© 2025 BLOCKVISION — The countdown has already started.</p>
+  </footer>
 
-<footer>
-  <p>© 2025 BLOCKVISION</p>
-</footer>
-
+  <script src="app.js"></script>
 </body>
 </html>
