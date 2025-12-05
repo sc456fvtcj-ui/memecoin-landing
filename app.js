@@ -21,9 +21,9 @@
       particles.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.4,
-        vy: (Math.random() - 0.5) * 0.4,
-        r: Math.random() * 2.5 + 0.7,
+        vx: (Math.random() - 0.5) * 0.35,
+        vy: (Math.random() - 0.5) * 0.35,
+        r: Math.random() * 2.5 + 0.8,
         color: colors[Math.floor(Math.random() * colors.length)],
       });
     }
@@ -35,6 +35,7 @@
     particles.forEach((p) => {
       p.x += p.vx;
       p.y += p.vy;
+
       if (p.x < 0 || p.x > width) p.vx *= -1;
       if (p.y < 0 || p.y > height) p.vy *= -1;
 
@@ -51,10 +52,10 @@
   }
 
   resize();
-  createParticles(80);
+  createParticles(70);
   window.addEventListener("resize", () => {
     resize();
-    createParticles(80);
+    createParticles(70);
   });
   step();
 })();
@@ -74,11 +75,15 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("scroll", reveal);
 });
 
-// ===== GSAP HERO ENTRANCE (אם GSAP נטען) =====
+// ===== GSAP HERO ENTRANCE =====
 if (window.gsap) {
-  gsap.from(".hero h2", { y: -20, opacity: 0, duration: 0.8, ease: "power3.out" });
-  gsap.from(".hero p", { y: 20, opacity: 0, duration: 0.8, delay: 0.2 });
-  gsap.from(".cta", { scale: 0.7, opacity: 0, duration: 0.7, delay: 0.35, ease: "back.out(1.7)" });
+  window.addEventListener("load", () => {
+    if (document.querySelector(".hero")) {
+      gsap.from(".hero h2", { y: -20, opacity: 0, duration: 0.8, ease: "power3.out" });
+      gsap.from(".hero p", { y: 20, opacity: 0, duration: 0.8, delay: 0.2 });
+      gsap.from(".cta", { scale: 0.7, opacity: 0, duration: 0.7, delay: 0.35, ease: "back.out(1.7)" });
+    }
+  });
 }
 
 // ===== LIVE CHARTS (BTC / ETH / XRP) =====
@@ -119,7 +124,7 @@ if (window.gsap) {
           },
           y: {
             ticks: { display: false },
-            grid: { color: "rgba(255,255,255,0.04)" },
+            grid: { color: "rgba(255,255,255,0.07)" },
           },
         },
       },
@@ -143,7 +148,7 @@ if (window.gsap) {
       updateChart(charts.eth, data.ethereum.usd);
       updateChart(charts.xrp, data.ripple.usd);
     } catch (e) {
-      // fallback – random walk
+      // If API fails, do a small random walk so הגרף לא מת
       randomStep(charts.btc);
       randomStep(charts.eth);
       randomStep(charts.xrp);
@@ -171,7 +176,7 @@ if (window.gsap) {
     chart.update("none");
   }
 
-  // initial fill
+  // initial + interval
   fetchPrices();
   setInterval(fetchPrices, 30000); // כל 30 שניות
 })();
