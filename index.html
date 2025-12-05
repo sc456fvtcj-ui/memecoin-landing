@@ -1,69 +1,841 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BLOCKVISION • The New Era</title>
+    <meta charset="UTF-8" />
+    <title>BLOCKVISION – Crypto Whale Hub</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- STYLE -->
-    <link rel="stylesheet" href="style.css">
-
-    <!-- LIBRARIES -->
+    <!-- Chart.js CDN for live graphs -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-</head>
 
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-dark: #020617;
+            --bg-deep: #020817;
+            --accent-green: #22c55e;
+            --accent-blue: #22d3ee;
+            --accent-purple: #a855f7;
+            --accent-orange: #fb923c;
+            --text-soft: #9ca3af;
+        }
+
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: radial-gradient(circle at top, #0f172a 0, #020617 45%, #000000 100%);
+            color: #f9fafb;
+            line-height: 1.7;
+            scroll-behavior: smooth;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* ===== NAVBAR ===== */
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            backdrop-filter: blur(20px);
+            background: linear-gradient(to right, rgba(2,6,23,0.97), rgba(17,24,39,0.97));
+            border-bottom: 1px solid rgba(55,65,81,0.8);
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 10px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+        }
+
+        .logo-mark {
+            width: 34px;
+            height: 34px;
+            border-radius: 999px;
+            border: 2px solid var(--accent-green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        nav a {
+            margin: 0 10px;
+            font-size: 0.9rem;
+            opacity: 0.85;
+        }
+
+        nav a:hover {
+            opacity: 1;
+        }
+
+        .nav-cta {
+            padding: 7px 16px;
+            border-radius: 999px;
+            background: linear-gradient(135deg, var(--accent-green), var(--accent-blue));
+            color: #020617;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        /* ===== COMMON LAYOUT ===== */
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 18px 80px;
+        }
+
+        section {
+            margin-bottom: 80px;
+        }
+
+        h1, h2, h3 {
+            margin: 0;
+        }
+
+        h2 {
+            font-size: 2.1rem;
+            margin-bottom: 16px;
+        }
+
+        .accent {
+            color: var(--accent-green);
+        }
+
+        .tagline {
+            color: var(--text-soft);
+            font-size: 0.95rem;
+        }
+
+        /* ===== HERO ===== */
+
+        .hero {
+            display: grid;
+            grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+            gap: 30px;
+            align-items: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 4px 11px;
+            border-radius: 999px;
+            border: 1px solid rgba(148,163,184,0.6);
+            font-size: 0.8rem;
+            color: #e5e7eb;
+        }
+
+        .hero-title {
+            font-size: 2.8rem;
+            margin-top: 14px;
+        }
+
+        .hero-subtitle {
+            margin-top: 8px;
+            color: var(--text-soft);
+            font-size: 1.03rem;
+            max-width: 34rem;
+        }
+
+        .hero-buttons {
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .btn-primary,
+        .btn-secondary {
+            padding: 11px 20px;
+            border-radius: 999px;
+            font-size: 0.95rem;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-green), var(--accent-blue));
+            color: #020617;
+            font-weight: 700;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #e5e7eb;
+            border: 1px solid rgba(148,163,184,0.7);
+        }
+
+        .hero-meta {
+            margin-top: 14px;
+            font-size: 0.86rem;
+            color: var(--text-soft);
+        }
+
+        .hero-panel {
+            position: relative;
+            border-radius: 24px;
+            padding: 18px 16px 18px;
+            background: radial-gradient(circle at top, rgba(34,197,94,0.18), rgba(2,6,23,0.98));
+            border: 1px solid rgba(55,65,81,1);
+            box-shadow: 0 28px 80px rgba(0,0,0,0.8);
+        }
+
+        .hero-panel h3 {
+            font-size: 1rem;
+            margin-bottom: 4px;
+        }
+
+        .hero-panel small {
+            color: var(--text-soft);
+            font-size: 0.8rem;
+        }
+
+        .hero-panel-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 10px;
+            margin-top: 14px;
+        }
+
+        .mini-stat {
+            padding: 10px 10px;
+            border-radius: 16px;
+            border: 1px solid rgba(75,85,99,0.95);
+            background: radial-gradient(circle at top, rgba(56,189,248,0.16), rgba(15,23,42,0.98));
+            font-size: 0.8rem;
+        }
+
+        .mini-stat span {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        /* ===== LIVE MARKET SECTION ===== */
+
+        .section-heading {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .pill-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .pill {
+            padding: 4px 9px;
+            border-radius: 999px;
+            border: 1px solid rgba(148,163,184,0.7);
+            font-size: 0.76rem;
+            color: var(--text-soft);
+        }
+
+        .market-grid {
+            margin-top: 22px;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .coin-card {
+            border-radius: 20px;
+            padding: 14px 14px 16px;
+            background: radial-gradient(circle at top left, rgba(34,197,94,0.22), rgba(2,6,23,0.99));
+            border: 1px solid rgba(55,65,81,1);
+            box-shadow: 0 16px 40px rgba(0,0,0,0.8);
+        }
+
+        .coin-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .coin-main {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .coin-badge {
+            width: 34px;
+            height: 34px;
+            border-radius: 999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .coin-name {
+            font-size: 0.9rem;
+        }
+
+        .coin-symbol {
+            font-size: 0.8rem;
+            color: var(--text-soft);
+        }
+
+        .coin-price {
+            text-align: right;
+            font-size: 0.9rem;
+        }
+
+        .coin-price span {
+            display: block;
+        }
+
+        .price-main {
+            font-size: 1.05rem;
+            font-weight: 600;
+        }
+
+        .price-change {
+            font-size: 0.8rem;
+        }
+
+        .price-change.positive {
+            color: #4ade80;
+        }
+
+        .price-change.negative {
+            color: #f97373;
+        }
+
+        .chart-wrapper {
+            margin-top: 10px;
+            height: 160px;
+        }
+
+        canvas {
+            width: 100% !important;
+            height: 100% !important;
+        }
+
+        /* ===== ABOUT / PHILOSOPHY ===== */
+
+        .row-3 {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0,1fr));
+            gap: 20px;
+        }
+
+        .info-card {
+            border-radius: 20px;
+            padding: 18px 16px 20px;
+            border: 1px solid rgba(55,65,81,1);
+            background: radial-gradient(circle at top, rgba(168,85,247,0.25), rgba(17,24,39,0.98));
+        }
+
+        .info-card:nth-child(2) {
+            background: radial-gradient(circle at top, rgba(34,211,238,0.24), rgba(17,24,39,0.98));
+        }
+
+        .info-card:nth-child(3) {
+            background: radial-gradient(circle at top, rgba(251,146,60,0.22), rgba(17,24,39,0.98));
+        }
+
+        .info-card h3 {
+            margin-bottom: 8px;
+            font-size: 1.05rem;
+        }
+
+        .info-card p {
+            font-size: 0.92rem;
+        }
+
+        /* ===== COMMUNITY / CTA ===== */
+
+        .cta-block {
+            border-radius: 26px;
+            padding: 26px 20px 30px;
+            background: radial-gradient(circle at top, rgba(34,197,94,0.25), rgba(2,6,23,0.98));
+            border: 1px solid rgba(55,65,81,1);
+            text-align: center;
+        }
+
+        .cta-block p {
+            max-width: 40rem;
+            margin: 10px auto 18px;
+            color: #e5e7eb;
+            font-size: 0.97rem;
+        }
+
+        footer {
+            padding: 18px 16px 26px;
+            border-top: 1px solid rgba(31,41,55,1);
+            text-align: center;
+            font-size: 0.82rem;
+            color: var(--text-soft);
+        }
+
+        /* ===== RESPONSIVE ===== */
+
+        @media (max-width: 960px) {
+            .hero {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .hero-panel {
+                order: -1;
+            }
+
+            .market-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .row-3 {
+                grid-template-columns: minmax(0, 1fr);
+            }
+        }
+
+        @media (max-width: 720px) {
+            nav {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
 <body>
 
-<!-- BACKGROUND -->
-<canvas id="bg"></canvas>
-
 <header>
-    <div class="logo">
-        <img src="assets/logo.png" alt="BlockVision">
-        <h1>BLOCKVISION</h1>
-    </div>
+    <div class="nav-inner">
+        <div class="logo">
+            <div class="logo-mark">BV</div>
+            <div>BLOCKVISION</div>
+        </div>
 
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="roadmap.html">Roadmap</a>
-        <a href="tokenomics.html">Tokenomics</a>
-        <a href="https://twitter.com/ablockvision" target="_blank">@ablockvision</a>
-    </nav>
+        <nav>
+            <a href="#hero">Home</a>
+            <a href="#market">Live Market</a>
+            <a href="#vision">Vision</a>
+            <a href="#community">Community</a>
+            <a class="nav-cta" href="https://twitter.com/ablockvision" target="_blank" rel="noopener">
+                Twitter
+            </a>
+        </nav>
+    </div>
 </header>
 
-<!-- CHARTS SECTION -->
-<section class="charts">
-    <h2 class="neon">LIVE MARKET SIGNALS</h2>
+<main>
 
-    <div class="chart-box">
-        <h3>Bitcoin (BTC)</h3>
-        <canvas id="btcChart"></canvas>
-    </div>
+    <!-- HERO -->
+    <section id="hero" class="hero">
+        <div>
+            <div class="hero-badge">
+                🚀 BLOCKVISION • Live Crypto Hub • Whale Community
+            </div>
 
-    <div class="chart-box">
-        <h3>Ethereum (ETH)</h3>
-        <canvas id="ethChart"></canvas>
-    </div>
+            <h1 class="hero-title">
+                One whale. <span class="accent">Five leaders.</span>  
+                All moving together.
+            </h1>
 
-    <div class="chart-box">
-        <h3>Ripple (XRP)</h3>
-        <canvas id="xrpChart"></canvas>
-    </div>
-</section>
+            <p class="hero-subtitle">
+                Watch the pulse of the market in real-time: Bitcoin, Ethereum, Solana, XRP and Chainlink.
+                BLOCKVISION is built around one simple rule — it’s smarter to move as a coordinated community
+                than to chase charts alone.
+            </p>
 
-<!-- COMMUNITY -->
-<section class="community">
-    <h2 class="neon">THE BLOCKVISION ARMY</h2>
-    <p>We move together. We win together. Momentum is built by the community — and we’re leading the charge.</p>
-</section>
+            <div class="hero-buttons">
+                <a class="btn-primary" href="https://twitter.com/ablockvision" target="_blank" rel="noopener">
+                    Join us on Twitter (X)
+                </a>
+                <a class="btn-secondary" href="#market">
+                    🔥 Jump to live charts
+                </a>
+            </div>
+
+            <div class="hero-meta">
+                Not financial advice. We read momentum, structure and community flow — you control your own risk.
+            </div>
+        </div>
+
+        <aside class="hero-panel">
+            <h3>Whale Dashboard</h3>
+            <small>Top 5 coins we track together as a community.</small>
+
+            <div class="hero-panel-grid">
+                <div class="mini-stat">
+                    <div>Bitcoin Dominance</div>
+                    <span id="btc-dominance">–%</span>
+                    <div class="tagline">King of liquidity flow.</div>
+                </div>
+                <div class="mini-stat">
+                    <div>Alt Momentum</div>
+                    <span id="alt-momentum">Warming up…</span>
+                    <div class="tagline">When this flips, we sprint.</div>
+                </div>
+            </div>
+        </aside>
+    </section>
+
+    <!-- LIVE MARKET -->
+    <section id="market">
+        <div class="section-heading">
+            <div>
+                <h2>Live Market – Top 5 Coins</h2>
+                <p class="tagline">
+                    Real-time price streams powered by public APIs.  
+                    BTC · ETH · SOL · XRP · LINK – the core stack of our whale.
+                </p>
+            </div>
+            <div class="pill-row">
+                <div class="pill">⏱ Updated every 60 seconds</div>
+                <div class="pill">USD pairs</div>
+                <div class="pill">Data: CoinGecko public API</div>
+            </div>
+        </div>
+
+        <div class="market-grid">
+            <!-- BITCOIN -->
+            <article class="coin-card" data-coin="bitcoin">
+                <div class="coin-header">
+                    <div class="coin-main">
+                        <div class="coin-badge" style="background:linear-gradient(135deg,#f97316,#facc15);">
+                            ₿
+                        </div>
+                        <div>
+                            <div class="coin-name">Bitcoin</div>
+                            <div class="coin-symbol">BTC</div>
+                        </div>
+                    </div>
+                    <div class="coin-price">
+                        <span class="price-main" id="price-bitcoin">$–</span>
+                        <span class="price-change" id="change-bitcoin">24h: –%</span>
+                    </div>
+                </div>
+                <div class="chart-wrapper">
+                    <canvas id="chart-bitcoin"></canvas>
+                </div>
+            </article>
+
+            <!-- ETHEREUM -->
+            <article class="coin-card" data-coin="ethereum">
+                <div class="coin-header">
+                    <div class="coin-main">
+                        <div class="coin-badge" style="background:linear-gradient(135deg,#a855f7,#6366f1);">
+                            Ξ
+                        </div>
+                        <div>
+                            <div class="coin-name">Ethereum</div>
+                            <div class="coin-symbol">ETH</div>
+                        </div>
+                    </div>
+                    <div class="coin-price">
+                        <span class="price-main" id="price-ethereum">$–</span>
+                        <span class="price-change" id="change-ethereum">24h: –%</span>
+                    </div>
+                </div>
+                <div class="chart-wrapper">
+                    <canvas id="chart-ethereum"></canvas>
+                </div>
+            </article>
+
+            <!-- SOLANA -->
+            <article class="coin-card" data-coin="solana">
+                <div class="coin-header">
+                    <div class="coin-main">
+                        <div class="coin-badge" style="background:linear-gradient(135deg,#22c55e,#14b8a6);">
+                            ◎
+                        </div>
+                        <div>
+                            <div class="coin-name">Solana</div>
+                            <div class="coin-symbol">SOL</div>
+                        </div>
+                    </div>
+                    <div class="coin-price">
+                        <span class="price-main" id="price-solana">$–</span>
+                        <span class="price-change" id="change-solana">24h: –%</span>
+                    </div>
+                </div>
+                <div class="chart-wrapper">
+                    <canvas id="chart-solana"></canvas>
+                </div>
+            </article>
+
+            <!-- XRP -->
+            <article class="coin-card" data-coin="ripple">
+                <div class="coin-header">
+                    <div class="coin-main">
+                        <div class="coin-badge" style="background:linear-gradient(135deg,#0ea5e9,#22d3ee);">
+                            XRP
+                        </div>
+                        <div>
+                            <div class="coin-name">XRP</div>
+                            <div class="coin-symbol">XRP</div>
+                        </div>
+                    </div>
+                    <div class="coin-price">
+                        <span class="price-main" id="price-ripple">$–</span>
+                        <span class="price-change" id="change-ripple">24h: –%</span>
+                    </div>
+                </div>
+                <div class="chart-wrapper">
+                    <canvas id="chart-ripple"></canvas>
+                </div>
+            </article>
+
+            <!-- CHAINLINK -->
+            <article class="coin-card" data-coin="chainlink">
+                <div class="coin-header">
+                    <div class="coin-main">
+                        <div class="coin-badge" style="background:linear-gradient(135deg,#38bdf8,#1d4ed8);">
+                            LINK
+                        </div>
+                        <div>
+                            <div class="coin-name">Chainlink</div>
+                            <div class="coin-symbol">LINK</div>
+                        </div>
+                    </div>
+                    <div class="coin-price">
+                        <span class="price-main" id="price-chainlink">$–</span>
+                        <span class="price-change" id="change-chainlink">24h: –%</span>
+                    </div>
+                </div>
+                <div class="chart-wrapper">
+                    <canvas id="chart-chainlink"></canvas>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- VISION / PHILOSOPHY -->
+    <section id="vision">
+        <h2>The BLOCKVISION Philosophy</h2>
+        <p class="tagline">
+            We’re not here to worship green candles. We’re here to read the flow,
+            move early and move as one.
+        </p>
+
+        <div class="row-3" style="margin-top:22px;">
+            <article class="info-card">
+                <h3>Meme Energy, Engineered</h3>
+                <p>
+                    Meme coins are culture, attention and pure volatility.  
+                    We combine that energy with disciplined execution so the community
+                    doesn’t just watch the show — it writes the script.
+                </p>
+            </article>
+
+            <article class="info-card">
+                <h3>AI, Robotics & Signal Reading</h3>
+                <p>
+                    Inspired by robotics and particle labs – test, measure, iterate.  
+                    We track structure, momentum shifts and liquidity waves instead
+                    of chasing random noise.
+                </p>
+            </article>
+
+            <article class="info-card">
+                <h3>Whale-Level Coordination</h3>
+                <p>
+                    A single small trader is noise.  
+                    A coordinated community is a whale.  
+                    We build tools, dashboards and content so the move happens together —
+                    not in fragments.
+                </p>
+            </article>
+        </div>
+    </section>
+
+    <!-- COMMUNITY / CTA -->
+    <section id="community">
+        <div class="cta-block">
+            <h2>Move with the whale, not behind it.</h2>
+            <p>
+                Every chart on this page is a snapshot. The real action happens live:
+                early alerts, memes, breakdowns and market reads straight to Twitter.
+                If you believe in making money <strong>together</strong> as a calm,
+                well-fed whale instead of panicking alone — you’re in the right place.
+            </p>
+
+            <div class="hero-buttons" style="justify-content:center;">
+                <a class="btn-primary" href="https://twitter.com/ablockvision" target="_blank" rel="noopener">
+                    Join the BLOCKVISION feed
+                </a>
+                <a class="btn-secondary" href="#hero">
+                    ↑ Back to top
+                </a>
+            </div>
+
+            <div style="margin-top:14px; font-size:0.8rem; color:var(--text-soft);">
+                Nothing here is financial advice. Always DYOR and manage your own risk.
+                BLOCKVISION is a community, not a promise.
+            </div>
+        </div>
+    </section>
+
+</main>
 
 <footer>
-    <p>© 2025 BLOCKVISION — All Rights Reserved</p>
+    © BLOCKVISION · Built for the community whale · 2025
 </footer>
 
-<!-- MAIN SCRIPT -->
-<script src="app.js"></script>
+<!-- ===== LIVE DATA SCRIPT ===== -->
+<script>
+/*
+    Simple live charts using CoinGecko public API + Chart.js
+    Works on GitHub Pages as long as the API is available.
+*/
+
+const COINS = [
+    { id: 'bitcoin',   symbol: 'BTC' },
+    { id: 'ethereum',  symbol: 'ETH' },
+    { id: 'solana',    symbol: 'SOL' },
+    { id: 'ripple',    symbol: 'XRP' },
+    { id: 'chainlink', symbol: 'LINK' },
+];
+
+const charts = {};
+
+async function fetchCoinData(coinId) {
+    const base = 'https://api.coingecko.com/api/v3';
+    const marketUrl = `${base}/coins/markets?vs_currency=usd&ids=${coinId}`;
+    const chartUrl  = `${base}/coins/${coinId}/market_chart?vs_currency=usd&days=1&interval=hourly`;
+
+    const [marketRes, chartRes] = await Promise.all([
+        fetch(marketUrl),
+        fetch(chartUrl),
+    ]);
+
+    if (!marketRes.ok || !chartRes.ok) {
+        throw new Error('API error');
+    }
+
+    const marketData = await marketRes.json();
+    const chartData  = await chartRes.json();
+
+    return {
+        market: marketData[0],
+        prices: chartData.prices, // [timestamp, price]
+    };
+}
+
+function formatPrice(value) {
+    if (value > 1000) return '$' + value.toLocaleString(undefined, {maximumFractionDigits: 0});
+    return '$' + value.toLocaleString(undefined, {maximumFractionDigits: 2});
+}
+
+function updateDominance(coinDatas) {
+    const btc = coinDatas.find(c => c.market.id === 'bitcoin');
+    if (!btc) return;
+    const domEl = document.getElementById('btc-dominance');
+    if (domEl && typeof btc.market.market_cap_rank !== 'undefined') {
+        domEl.textContent = `Rank #${btc.market.market_cap_rank}`;
+    }
+    const altEl = document.getElementById('alt-momentum');
+    if (altEl) {
+        altEl.textContent = 'Tracking leaders: BTC / ETH / SOL / XRP / LINK';
+    }
+}
+
+async function renderAllCoins() {
+    try {
+        const results = await Promise.all(
+            COINS.map(c => fetchCoinData(c.id))
+        );
+
+        // Update cards & charts
+        results.forEach((data, index) => {
+            const coin = COINS[index];
+            const m = data.market;
+
+            // Price + change
+            const priceEl  = document.getElementById(`price-${coin.id}`);
+            const changeEl = document.getElementById(`change-${coin.id}`);
+
+            if (priceEl)  priceEl.textContent  = formatPrice(m.current_price);
+            if (changeEl) {
+                const change = m.price_change_percentage_24h;
+                const cls = change >= 0 ? 'positive' : 'negative';
+                changeEl.classList.remove('positive', 'negative');
+                changeEl.classList.add(cls);
+                changeEl.textContent = `24h: ${change ? change.toFixed(2) : '0.00'}%`;
+            }
+
+            // Chart data
+            const labels = data.prices.map(p => {
+                const d = new Date(p[0]);
+                return d.getHours() + ':00';
+            });
+            const values = data.prices.map(p => p[1]);
+
+            const ctx = document.getElementById(`chart-${coin.id}`);
+            if (!ctx) return;
+
+            if (charts[coin.id]) {
+                charts[coin.id].data.labels = labels;
+                charts[coin.id].data.datasets[0].data = values;
+                charts[coin.id].update();
+            } else {
+                charts[coin.id] = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels,
+                        datasets: [{
+                            data: values,
+                            fill: true,
+                            tension: 0.35,
+                        }]
+                    },
+                    options: {
+                        plugins: { legend: { display: false } },
+                        scales: {
+                            x: {
+                                display: false,
+                            },
+                            y: {
+                                display: false,
+                            }
+                        },
+                        elements: {
+                            point: { radius: 0 }
+                        }
+                    }
+                });
+            }
+        });
+
+        updateDominance(results);
+    } catch (err) {
+        console.error('Error loading market data:', err);
+    }
+}
+
+// Initial load & refresh every 60s
+renderAllCoins();
+setInterval(renderAllCoins, 60000);
+</script>
 
 </body>
 </html>
