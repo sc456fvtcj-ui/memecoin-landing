@@ -1,482 +1,857 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>BLOCKVISION – Community, Momentum & Meme Coin Power</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <title>BLOCKVISION – Meme Coin Momentum</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="BLOCKVISION – AI-driven meme coin momentum, community-powered, early-entry plays and high-voltage rotations." />
+  <style>
+    :root {
+      --bg: #050509;
+      --bg-alt: #0b0f17;
+      --accent: #00ff9d;
+      --accent-soft: rgba(0, 255, 157, 0.18);
+      --accent-blue: #00c8ff;
+      --text-main: #f7f7f7;
+      --text-muted: #a3b0c2;
+      --danger: #ff375f;
+      --card-radius: 18px;
+      --max-width: 1100px;
+    }
 
-    <style>
-        * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        body {
-            margin: 0;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            background: radial-gradient(circle at top, #111827 0, #020617 40%, #000000 100%);
-            color: #f9fafb;
-            line-height: 1.7;
-        }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #10192b 0, #050509 44%, #000000 100%);
+      color: var(--text-main);
+      min-height: 100vh;
+    }
 
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-        /* HEADER */
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 50;
-            backdrop-filter: blur(20px);
-            background: linear-gradient(to left, rgba(15,23,42,0.92), rgba(0,0,0,0.96));
-            border-bottom: 1px solid rgba(148,163,184,0.3);
-        }
+    .page-wrap {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
 
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 12px 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
+    /* NAVBAR */
+    .nav {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 18px 18px 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      z-index: 3;
+    }
 
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: 700;
-            letter-spacing: 0.06em;
-        }
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
 
-        .logo-mark {
-            width: 34px;
-            height: 34px;
-            border-radius: 50%;
-            border: 2px solid #22c55e;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-        }
+    .logo-circle {
+      width: 42px;
+      height: 42px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 0, #1be4ff, #004bff 40%, #001220 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
 
-        nav a {
-            margin: 0 10px;
-            font-size: 0.95rem;
-            opacity: 0.8;
-        }
+    .logo-circle img {
+      width: 36px;
+      height: 36px;
+      object-fit: contain;
+    }
 
-        nav a:hover { opacity: 1; }
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
 
-        .nav-cta {
-            padding: 8px 16px;
-            border-radius: 999px;
-            background: linear-gradient(135deg, #22c55e, #22d3ee);
-            color: #020617;
-            font-weight: 700;
-            font-size: 0.9rem;
-        }
+    .brand-text span:first-child {
+      font-size: 0.86rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent-blue);
+    }
 
-        main {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px 80px;
-        }
+    .brand-text span:last-child {
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
 
-        section { margin-bottom: 80px; }
-        h1, h2, h3 { margin-top: 0; }
-        h2 { font-size: 2rem; margin-bottom: 18px; }
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
 
-        .tagline { color: #9ca3af; font-size: 0.95rem; }
-        .accent { color: #22c55e; }
+    .badge-live {
+      font-size: 0.75rem;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid var(--accent-soft);
+      background: rgba(0, 255, 157, 0.04);
+      color: var(--accent);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
 
-        /* HERO */
-        .hero {
-            display: grid;
-            grid-template-columns: 1.5fr 1fr;
-            gap: 30px;
-            align-items: center;
-        }
+    .btn {
+      border-radius: 999px;
+      padding: 9px 18px;
+      font-size: 0.85rem;
+      border: 1px solid transparent;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.18s ease-out;
+      white-space: nowrap;
+    }
 
-        .hero-badge {
-            display: inline-flex;
-            gap: 8px;
-            padding: 4px 10px;
-            border-radius: 999px;
-            border: 1px solid rgba(148,163,184,0.5);
-            font-size: 0.8rem;
-            opacity: 0.9;
-        }
+    .btn-primary {
+      background: linear-gradient(120deg, var(--accent-blue), var(--accent));
+      color: #020308;
+      font-weight: 600;
+    }
 
-        .hero-title {
-            font-size: 2.7rem;
-            margin: 14px 0;
-        }
+    .btn-primary:hover {
+      filter: brightness(1.08);
+      transform: translateY(-1px);
+      box-shadow: 0 0 20px rgba(0, 255, 157, 0.35);
+    }
 
-        .hero-subtitle {
-            color: #9ca3af;
-            font-size: 1.03rem;
-            max-width: 34em;
-        }
+    .btn-outline {
+      border-color: rgba(128, 140, 160, 0.7);
+      color: var(--text-muted);
+      background: rgba(10, 14, 22, 0.8);
+    }
 
-        .hero-buttons {
-            margin-top: 24px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
+    .btn-outline:hover {
+      border-color: var(--accent-blue);
+      color: var(--accent-blue);
+      transform: translateY(-1px);
+    }
 
-        .btn-primary {
-            padding: 12px 20px;
-            border-radius: 999px;
-            background: linear-gradient(135deg, #22c55e, #22d3ee);
-            border: none;
-            color: #020617;
-            font-weight: 700;
-            cursor: pointer;
-        }
+    /* HERO */
+    .hero {
+      position: relative;
+      overflow: hidden;
+    }
 
-        .btn-secondary {
-            padding: 12px 20px;
-            border-radius: 999px;
-            border: 1px solid rgba(148,163,184,0.5);
-            background: transparent;
-            color: #e5e7eb;
-            cursor: pointer;
-        }
+    .grid-bg {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0, 255, 157, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 157, 0.08) 1px, transparent 1px);
+      background-size: 40px 40px, 40px 40px;
+      opacity: 0.24;
+      pointer-events: none;
+    }
 
-        .hero-meta {
-            margin-top: 16px;
-            font-size: 0.85rem;
-            color: #6b7280;
-        }
+    .hero-gradient {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 10% 0, rgba(0, 200, 255, 0.20), transparent 55%),
+        radial-gradient(circle at 100% 15%, rgba(0, 255, 157, 0.15), transparent 55%),
+        radial-gradient(circle at 50% 100%, rgba(255, 64, 128, 0.20), transparent 65%);
+      mix-blend-mode: screen;
+      pointer-events: none;
+    }
 
-        .hero-visual {
-            border-radius: 24px;
-            padding: 18px;
-            background: radial-gradient(circle at top, rgba(34,197,94,0.15), rgba(15,23,42,1));
-            border: 1px solid rgba(55,65,81,0.9);
-            box-shadow: 0 25px 60px rgba(0,0,0,0.7);
-        }
+    .hero-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 40px 18px 64px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 32px;
+      position: relative;
+      z-index: 2;
+    }
 
-        .hero-graph {
-            margin-top: 16px;
-            height: 170px;
-            border-radius: 16px;
-            background-size: cover;
-            background-position: center;
-        }
+    @media (max-width: 880px) {
+      .hero-inner {
+        grid-template-columns: minmax(0, 1fr);
+        padding-top: 26px;
+      }
+      .nav {
+        padding-inline: 14px;
+      }
+    }
 
-        /* THREE CARDS */
-        .grid-3 {
-            display: grid;
-            grid-template-columns: repeat(3,1fr);
-            gap: 24px;
-        }
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--accent-soft);
+      background: rgba(4, 8, 14, 0.88);
+      color: var(--accent);
+      font-size: 0.78rem;
+      margin-bottom: 14px;
+    }
 
-        .card {
-            background: radial-gradient(circle at top, rgba(34,197,94,0.13), rgba(15,23,42,0.96));
-            border-radius: 20px;
-            padding: 20px;
-            border: 1px solid rgba(55,65,81,0.9);
-            box-shadow: 0 18px 40px rgba(0,0,0,0.65);
-        }
+    .hero-title {
+      font-size: clamp(2.2rem, 4vw, 2.9rem);
+      font-weight: 800;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
 
-        /* GRAPH GRID */
-        .graph-grid {
-            display: grid;
-            grid-template-columns: repeat(3,1fr);
-            gap: 16px;
-        }
+    .hero-title span {
+      background: linear-gradient(120deg, #ffffff, #9afcff, #65ffbf);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
 
-        .graph-card {
-            border-radius: 18px;
-            overflow: hidden;
-            border: 1px solid rgba(55,65,81,0.9);
-        }
+    .hero-subtitle {
+      font-size: 0.96rem;
+      color: var(--text-muted);
+      max-width: 460px;
+      line-height: 1.6;
+      margin-bottom: 18px;
+    }
 
-        .graph-card img {
-            width: 100%;
-            height: 170px;
-            object-fit: cover;
-        }
+    .hero-highlights {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 10px;
+      margin: 18px 0 24px;
+    }
 
-        .graph-label {
-            position: absolute;
-            bottom: 8px;
-            right: 10px;
-            padding: 4px 9px;
-            border-radius: 999px;
-            font-size: 0.78rem;
-            background: rgba(15,23,42,0.9);
-        }
+    .pill {
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 0.78rem;
+      border: 1px solid rgba(96, 110, 145, 0.9);
+      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(5, 9, 17, 0.9);
+    }
 
-        /* TWEETS */
-        .tweet-grid {
-            display: grid;
-            grid-template-columns: repeat(2,1fr);
-            gap: 20px;
-        }
+    .pill span {
+      font-size: 0.75rem;
+      color: var(--accent-blue);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
 
-        .tweet-card {
-            border-radius: 18px;
-            padding: 14px 16px;
-            background: radial-gradient(circle at top left, rgba(34,197,94,0.18), rgba(15,23,42,0.96));
-            border: 1px solid rgba(55,65,81,0.95);
-        }
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
 
-        /* ROADMAP */
-        .roadmap {
-            display: grid;
-            grid-template-columns: repeat(3,1fr);
-            gap: 18px;
-        }
+    .hero-footnote {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
 
-        .phase {
-            padding: 18px;
-            border-radius: 18px;
-            border: 1px solid rgba(55,65,81,0.9);
-        }
+    .hero-footnote span {
+      color: var(--accent);
+    }
 
-        /* FINAL CTA */
-        .cta-final {
-            text-align: center;
-            border-radius: 26px;
-            padding: 30px;
-            background: radial-gradient(circle at top, rgba(34,197,94,0.18), rgba(15,23,42,0.96));
-        }
+    /* RIGHT HERO SIDE - CHART / STATS */
+    .hero-right {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
 
-        @media (max-width:900px){
-            .hero { grid-template-columns: 1fr; }
-            .grid-3,
-            .graph-grid,
-            .tweet-grid,
-            .roadmap { grid-template-columns: 1fr; }
-        }
-    </style>
+    .chart-card {
+      background: radial-gradient(circle at top, #182238, #050509 55%);
+      border-radius: 20px;
+      padding: 18px 18px 18px;
+      border: 1px solid rgba(0, 255, 157, 0.25);
+      box-shadow: 0 0 26px rgba(0, 255, 157, 0.16);
+      position: relative;
+      overflow: hidden;
+      min-height: 210px;
+    }
+
+    .chart-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0, 255, 157, 0.14) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 157, 0.14) 1px, transparent 1px);
+      background-size: 28px 28px;
+      opacity: 0.5;
+      mix-blend-mode: screen;
+      pointer-events: none;
+    }
+
+    .chart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .chart-header-left {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .chart-symbol {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .chart-name {
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .chart-pct {
+      font-size: 0.92rem;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .chart-tag {
+      font-size: 0.7rem;
+      padding: 3px 7px;
+      border-radius: 999px;
+      background: rgba(0,0,0,0.55);
+      border: 1px solid rgba(0,255,157,0.35);
+      color: var(--accent);
+    }
+
+    .chart-body {
+      margin-top: 18px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .fake-chart-line {
+      height: 120px;
+      background:
+        linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent),
+        url("data:image/svg+xml,%3Csvg width='400' height='160' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolyline fill='none' stroke='%2300ff9d' stroke-width='3' points='0,140 40,130 80,110 120,115 160,90 200,100 240,60 280,75 320,40 360,55 400,20'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-size: cover;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .chart-footer {
+      margin-top: 10px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+
+    .mini-line {
+      width: 50px;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--accent-blue), var(--accent));
+    }
+
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 8px;
+    }
+
+    .stat-card {
+      background: rgba(8, 12, 20, 0.9);
+      border-radius: 12px;
+      padding: 10px 12px;
+      border: 1px solid rgba(56, 72, 104, 0.9);
+      font-size: 0.72rem;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      color: var(--text-muted);
+    }
+
+    .stat-card strong {
+      font-size: 0.85rem;
+      color: var(--text-main);
+    }
+
+    /* SECTION BASE */
+    main {
+      flex: 1;
+      position: relative;
+      z-index: 2;
+    }
+
+    .section {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 14px 18px 40px;
+    }
+
+    .section-title {
+      font-size: 1.25rem;
+      margin-bottom: 10px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-title span {
+      font-size: 0.86rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--accent-blue);
+    }
+
+    .section-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+      gap: 18px;
+    }
+
+    @media (max-width: 880px) {
+      .section-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .card {
+      border-radius: var(--card-radius);
+      background: rgba(6, 10, 18, 0.96);
+      border: 1px solid rgba(42, 56, 90, 0.9);
+      padding: 18px 18px 16px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .card h3 {
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+
+    .card p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 10px;
+    }
+
+    .badge {
+      font-size: 0.75rem;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(23, 35, 60, 0.9);
+      border: 1px solid rgba(81, 104, 151, 0.9);
+      color: var(--text-muted);
+    }
+
+    .badge.hot {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(0, 255, 157, 0.08);
+    }
+
+    /* MINT SECTION */
+    .mint-card {
+      border-radius: var(--card-radius);
+      background: radial-gradient(circle at top, rgba(0, 255, 157, 0.16), #050509 55%);
+      border: 1px solid rgba(0, 255, 157, 0.28);
+      padding: 20px 18px 18px;
+      box-shadow: 0 0 26px rgba(0, 255, 157, 0.18);
+    }
+
+    .mint-label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--accent-blue);
+      margin-bottom: 4px;
+    }
+
+    .mint-title {
+      font-size: 1.1rem;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .mint-box {
+      margin-top: 10px;
+      border-radius: 10px;
+      padding: 10px 12px;
+      background: #050509;
+      border: 1px dashed rgba(0, 255, 157, 0.35);
+      font-family: "SF Mono", ui-monospace, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 0.8rem;
+      text-align: left;
+      word-wrap: break-word;
+      color: var(--accent);
+    }
+
+    .mint-hint {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .soon-tag {
+      font-size: 0.7rem;
+      padding: 3px 6px;
+      border-radius: 999px;
+      background: rgba(255, 168, 76, 0.12);
+      border: 1px solid rgba(255, 168, 76, 0.6);
+      color: #ffb35a;
+    }
+
+    /* SOCIAL / CTA */
+    .social-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 14px;
+      margin-top: 12px;
+    }
+
+    .social-card {
+      border-radius: 14px;
+      background: rgba(7, 11, 19, 0.95);
+      border: 1px solid rgba(54, 68, 104, 0.9);
+      padding: 12px 14px;
+      font-size: 0.86rem;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .social-card strong {
+      font-size: 0.9rem;
+    }
+
+    .social-link {
+      font-size: 0.8rem;
+      color: var(--accent-blue);
+    }
+
+    .social-link:hover {
+      text-decoration: underline;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid rgba(32, 42, 70, 0.9);
+      padding: 14px 18px 18px;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      background: #020309;
+      margin-top: 10px;
+    }
+
+    .footer-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .footer-inner span {
+      opacity: 0.9;
+    }
+
+    .footer-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+  </style>
 </head>
 <body>
+<div class="page-wrap">
 
-<header>
-    <div class="nav-container">
-        <div class="logo">
-            <div class="logo-mark">BV</div>
-            <div>BLOCKVISION</div>
+  <!-- NAV -->
+  <header class="hero">
+    <div class="grid-bg"></div>
+    <div class="hero-gradient"></div>
+
+    <nav class="nav">
+      <div class="nav-left">
+        <div class="logo-circle">
+          <!-- Replace logo.png with your logo file name if different -->
+          <img src="logo.png" alt="BLOCKVISION logo" />
+        </div>
+        <div class="brand-text">
+          <span>BLOCKVISION</span>
+          <span>Meme Momentum</span>
+        </div>
+      </div>
+
+      <div class="nav-right">
+        <div class="badge-live">
+          <span>⚡ Early Access</span>
+        </div>
+        <a class="btn btn-outline" href="https://x.com/ablockvision" target="_blank" rel="noopener noreferrer">
+          X / Twitter
+        </a>
+      </div>
+    </nav>
+
+    <!-- HERO CONTENT -->
+    <div class="hero-inner">
+      <div>
+        <div class="hero-tag">
+          <span>🔥 Rotation into meme coins</span>
         </div>
 
-        <nav>
-            <a href="#hero">Home</a>
-            <a href="#about">Project</a>
-            <a href="#token">Token</a>
-            <a href="#graphs">Charts</a>
-            <a href="#community">Community</a>
-            <a href="#roadmap">Roadmap</a>
-            <a class="nav-cta" href="https://twitter.com/ablockvision" target="_blank">Twitter</a>
-        </nav>
+        <h1 class="hero-title">
+          <span>BLOCKVISION</span><br />
+          AI-Driven Meme Coin Flow
+        </h1>
+
+        <p class="hero-subtitle">
+          Liquidity is rotating. Microcaps are waking up. BLOCKVISION tracks the flow,
+          hunts high-voltage plays and moves as one community whale — not scattered minnows.
+        </p>
+
+        <div class="hero-highlights">
+          <div class="pill">
+            <span>FOCUS</span> Early momentum entries
+          </div>
+          <div class="pill">
+            <span>EDGE</span> Robotics &amp; AI narrative
+          </div>
+          <div class="pill">
+            <span>POWER</span> Community-sized liquidity
+          </div>
+        </div>
+
+        <div class="hero-buttons">
+          <a class="btn btn-primary" href="https://x.com/ablockvision" target="_blank" rel="noopener noreferrer">
+            Follow on X
+          </a>
+          <a class="btn btn-outline" href="#mint">
+            Contract (Coming Soon)
+          </a>
+        </div>
+
+        <p class="hero-footnote">
+          Built for <span>early movers</span> who understand rotation, momentum and community-driven alpha.
+        </p>
+      </div>
+
+      <!-- RIGHT HERO – CHART + STATS -->
+      <div class="hero-right">
+        <div class="chart-card">
+          <div class="chart-header">
+            <div class="chart-header-left">
+              <div class="chart-symbol">$BLOCKVISION</div>
+              <div class="chart-name">Community Meme Momentum</div>
+            </div>
+            <div style="display:flex; flex-direction:column; align-items:flex-end; gap:6px;">
+              <div class="chart-pct">+∞% Narrative Potential</div>
+              <div class="chart-tag">Meme Season Mode: ON</div>
+            </div>
+          </div>
+
+          <div class="chart-body">
+            <div class="fake-chart-line"></div>
+            <div class="chart-footer">
+              <span>Time in the market &gt; timing the market.</span>
+              <span class="mini-line"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="stat-row">
+          <div class="stat-card">
+            <span>Community Goal</span>
+            <strong>Move as one whale</strong>
+            <span>Coordinated rotations, shared alpha, no one left behind.</span>
+          </div>
+          <div class="stat-card">
+            <span>Core Narrative</span>
+            <strong>AI × Robotics × Memes</strong>
+            <span>Real tech story wrapped in meme energy.</span>
+          </div>
+          <div class="stat-card">
+            <span>Playbook</span>
+            <strong>High-voltage entries</strong>
+            <span>Strike early. Exit smart. Repeat as a unit.</span>
+          </div>
+        </div>
+      </div>
     </div>
-</header>
+  </header>
 
-<main>
+  <main>
 
-    <!-- HERO -->
-    <section id="hero" class="hero">
-        <div>
-            <div class="hero-badge">🚀 BLOCKVISION • AI • Meme Coin • Community</div>
+    <!-- VISION + MOVEMENT -->
+    <section class="section">
+      <div class="section-title">
+        <span>THE VISION</span>
+      </div>
 
-            <h1 class="hero-title">
-                Our whale moves together —  
-                <span class="accent">never alone.</span>
-            </h1>
+      <div class="section-grid">
+        <div class="card">
+          <h3>“Meme coins aren’t a joke. They’re a vehicle.”</h3>
+          <p>
+            BLOCKVISION was built from a simple truth: when retail moves together, it becomes
+            the biggest player in the room. We treat meme coins as part of a much bigger ecosystem we’re building —
+            one connected to AI, robotics and high-conviction tech narratives.
+          </p>
+          <p style="margin-top:10px;">
+            We read the flow. We track the rotations. When majors cool off, we ride the microcap wave together —
+            early, loud and unapologetic.
+          </p>
 
-            <p class="hero-subtitle">
-                BLOCKVISION is a community–driven meme coin built on movement, momentum and market truth.  
-                We combine crypto, AI, robotics–inspired discipline, and real market flow to create one united force:
-                a community that earns together.
-            </p>
-
-            <div class="hero-buttons">
-                <a class="btn-primary" href="https://twitter.com/ablockvision" target="_blank">
-                    Follow BLOCKVISION on Twitter (X)
-                </a>
-
-                <a class="btn-secondary" href="https://example.com/blockvision-token" target="_blank">
-                    💰 Buy the Token (DEX / Dapp)
-                </a>
-            </div>
-
-            <div class="hero-meta">
-                🔔 Early alerts, charts and momentum signals drop LIVE on Twitter — stay sharp.
-            </div>
+          <div class="badge-row">
+            <span class="badge hot">Community Whale</span>
+            <span class="badge">Microcap Momentum</span>
+            <span class="badge">Narrative Rotation</span>
+            <span class="badge">High-Voltage Plays</span>
+          </div>
         </div>
 
-        <aside class="hero-visual">
-            <h3>Market Snapshot</h3>
-            <small>Not financial advice — we read charts, not dreams.</small>
-
-            <div class="hero-graph" style="background-image:url('images/graph-main.jpg');"></div>
-        </aside>
-    </section>
-
-    <!-- PROJECT -->
-    <section id="about">
-        <h2>Why BLOCKVISION?</h2>
-        <p class="tagline">
-            Our mission is simple: turn meme energy into structured movement.  
-            No hype for hype’s sake — real flow, real data, real timing.
-        </p>
-
-        <div class="grid-3">
-            <div class="card">
-                <h3>Meme Coin, No Nonsense</h3>
-                <p>Meme coins aren’t a joke — they’re an energy layer inside crypto.  
-                We treat the memes lightly… but the charts seriously.</p>
-            </div>
-
-            <div class="card" id="token">
-                <h3>The BLOCKVISION Token</h3>
-                <p>Community-powered. Built around early entry, precise timing and unified movement.  
-                Critical alerts drop only on official channels.</p>
-            </div>
-
-            <div class="card">
-                <h3>AI, Robotics & Particle Thinking</h3>
-                <p>Inspired by real engineering teams — precision, measurement and iteration.  
-                Every candle is data. Every move is intentional.</p>
-            </div>
+        <div class="card">
+          <h3>Signal, not noise.</h3>
+          <p>
+            Every post, every chart and every call is designed around one idea:
+            <strong>help the community move like a single, informed entity</strong>.
+          </p>
+          <p style="margin-top:8px;">
+            We share context, not just tickers. We zoom out, not just farm entries. We care about risk,
+            composure and execution — while still keeping the meme culture alive and dangerous.
+          </p>
+          <p style="margin-top:8px;">
+            If you feel the momentum, you already know: this is where the real gains are made.
+          </p>
         </div>
+      </div>
     </section>
 
-    <!-- CHARTS -->
-    <section id="graphs">
-        <h2>Charts & Market Vision</h2>
-        <p class="tagline">Upload real screenshots here from your Twitter posts.</p>
+    <!-- MINT + LINKS -->
+    <section class="section" id="mint">
+      <div class="section-title">
+        <span>THE TOKEN</span>
+      </div>
 
-        <div class="graph-grid">
-            <div class="graph-card">
-                <img src="images/graph1.jpg">
-                <div class="graph-label">🚀 Meme Season Mode</div>
-            </div>
-            <div class="graph-card">
-                <img src="images/graph2.jpg">
-                <div class="graph-label">⚡ High Voltage Flow</div>
-            </div>
-            <div class="graph-card">
-                <img src="images/graph3.jpg">
-                <div class="graph-label">🐋 Whale Movement</div>
-            </div>
+      <div class="section-grid">
+        <div class="mint-card">
+          <div class="mint-label">Official Contract</div>
+          <div class="mint-title">
+            💰 Mint Address
+            <span class="soon-tag">Coming Soon</span>
+          </div>
+          <p style="font-size:0.9rem; color:var(--text-muted); margin-top:4px;">
+            Once the token is live, this is where the <strong>only official</strong> mint / contract address will appear.
+            Bookmark this page and double-check here before you ape.
+          </p>
+
+          <div class="mint-box" id="mint-address">
+            // Paste your official mint / contract address here once launched.<br />
+            // Example: 0x0000... or Solana mint address.
+          </div>
+
+          <div class="mint-hint">
+            To update this: edit <code>index.html</code> in GitHub and replace the text inside
+            <code>#mint-address</code> with your real contract.
+          </div>
+
+          <div style="margin-top:14px; display:flex; flex-wrap:wrap; gap:10px;">
+            <a class="btn btn-primary" href="#" target="_blank" rel="noopener noreferrer">
+              Buy on DEX (Soon)
+            </a>
+            <a class="btn btn-outline" href="https://x.com/ablockvision" target="_blank" rel="noopener noreferrer">
+              Live Launch Updates on X
+            </a>
+          </div>
         </div>
-    </section>
 
-    <!-- COMMUNITY TWEETS -->
-    <section id="community">
-        <h2>The Community — Our Real Power</h2>
-        <p class="tagline">
-            We don’t do “team vs holders.”  
-            We move as one whale — heavy, smart and coordinated.
-        </p>
+        <div class="card">
+          <h3>Stay locked in.</h3>
+          <p>
+            When the countdown hits zero, entries move fast. Liquidity follows attention —
+            and attention follows narrative. You want to be in the room before the doors open, not after.
+          </p>
+          <p style="margin-top:10px;">
+            Follow the X account, watch the feed, and treat this site as your
+            <strong>single source of truth</strong> for contract links and official updates.
+          </p>
 
-        <div class="tweet-grid">
-            <div class="tweet-card">
-                <strong>@blockvision</strong>
-                <p>
-                    “Meme coins aren’t a joke — they’re part of an ecosystem we’re actively building.  
-                    Momentum, robotics-level thinking and real data drive everything we do.”
-                </p>
+          <div class="social-row" style="margin-top:12px;">
+            <div class="social-card">
+              <strong>🚀 X / Twitter</strong>
+              <span>Live market commentary, rotations, signals and announcements.</span>
+              <a class="social-link" href="https://x.com/ablockvision" target="_blank" rel="noopener noreferrer">
+                @ablockvision
+              </a>
             </div>
-
-            <div class="tweet-card">
-                <strong>@blockvision</strong>
-                <p>
-                    “Liquidity is rotating fast into meme coins.  
-                    Majors cool — microcaps wake up.  
-                    This is where early entries matter.”
-                </p>
+            <div class="social-card">
+              <strong>📜 Token Link</strong>
+              <span>DEX / chart link will be added the moment trading goes live.</span>
+              <span class="social-link">Coming soon – stay tuned on X.</span>
             </div>
-
-            <div class="tweet-card">
-                <strong>@blockvision</strong>
-                <p>
-                    “The BLOCKVISION token is fully community-driven.  
-                    No side deals, no hidden groups — only transparent alerts.”
-                </p>
-            </div>
-
-            <div class="tweet-card">
-                <strong>@blockvision</strong>
-                <p>
-                    “Real people. Real profits. Real growth.  
-                    The wins of our members fuel the entire project.”
-                </p>
-            </div>
+          </div>
         </div>
+      </div>
     </section>
 
-    <!-- ROADMAP -->
-    <section id="roadmap">
-        <h2>Roadmap</h2>
+  </main>
 
-        <div class="roadmap">
-            <div class="phase">
-                <h3>Phase I – Foundation</h3>
-                <ul>
-                    <li>Twitter launch & brand identity</li>
-                    <li>Organic community growth</li>
-                    <li>Daily chart updates & market flow</li>
-                    <li>Tokenomics preparation</li>
-                </ul>
-            </div>
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <span>© <span id="year"></span> BLOCKVISION • Built for meme momentum, powered by community.</span>
+      <div class="footer-tags">
+        <span>#MemeCoins</span>
+        <span>#Crypto</span>
+        <span>#AI</span>
+        <span>#Robotics</span>
+        <span>#BlockVision</span>
+      </div>
+    </div>
+  </footer>
 
-            <div class="phase">
-                <h3>Phase II – Token Launch</h3>
-                <ul>
-                    <li>Official contract release</li>
-                    <li>DEX/CEX listings</li>
-                    <li>Community-first marketing</li>
-                    <li>Utility & burn schedule</li>
-                </ul>
-            </div>
+</div>
 
-            <div class="phase">
-                <h3>Phase III – Expansion</h3>
-                <ul>
-                    <li>Partnerships in AI & robotics</li>
-                    <li>Community analytics tools</li>
-                    <li>Creator rewards & competitions</li>
-                    <li>Strong global brand positioning</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- FINAL CTA -->
-    <section>
-        <div class="cta-final">
-            <h2>We are a good whale — united, smart and moving together.</h2>
-            <p>
-                If your mission is to grow together, catch momentum early,  
-                and become part of a coordinated community — BLOCKVISION was built for you.
-            </p>
-
-            <div class="hero-buttons" style="justify-content:center;">
-                <a class="btn-primary" href="https://twitter.com/ablockvision" target="_blank">
-                    Join us on Twitter
-                </a>
-
-                <a class="btn-secondary" href="https://example.com/blockvision-token" target="_blank">
-                    🔗 Token Page
-                </a>
-            </div>
-            <div style="margin-top:12px; font-size:0.8rem; color:#9ca3af;">
-                Not financial advice. Everyone manages their own risk.  
-                We move smart — not blind.
-            </div>
-        </div>
-    </section>
-
-</main>
-
-<footer>
-    © BLOCKVISION • Built for the community • 2025
-</footer>
-
+<script>
+  // Set current year in footer automatically
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
 </body>
 </html>
