@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>BLOCKVISION • Live Crypto Dashboard</title>
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: "Inter", sans-serif;
+    background: #050505;
+    color: #e9f9ff;
+  }
+
+  header {
+    text-align: center;
+    padding: 40px 0;
+    margin-top: 20px;
+  }
+
+  header h1 {
+    font-family: "Orbitron";
+    color: #35e6ff;
+    font-size: 36px;
+    letter-spacing: 2px;
+  }
+
+  header p {
+    color: #8896a7;
+    margin-top: 8px;
+    font-size: 17px;
+  }
+
+  .container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 25px;
+    margin-top: 40px;
+  }
+
+  .card {
+    background: #0c0f12;
+    border: 1px solid rgba(255,255,255,0.06);
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 0 20px rgba(0,255,255,0.1);
+  }
+
+  .card h2 {
+    font-family: "Orbitron";
+    color: #39ff96;
+    font-size: 22px;
+    margin-bottom: 10px;
+  }
+
+  a.back {
+    display: inline-block;
+    margin: 20px;
+    color: #35e6ff;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  a.back:hover {
+    color: #39ff96;
+  }
+
+  canvas {
+    width: 100% !important;
+    height: 240px !important;
+  }
+</style>
+</head>
+
+<body>
+
+<a class="back" href="index.html">⬅ Back to Main Page</a>
+
+<header>
+  <h1>Live Crypto Dashboard</h1>
+  <p>Real-time charts powered by CoinGecko API • BLOCKVISION Style</p>
+</header>
+
+<div class="container">
+  <div class="grid">
+
+    <div class="card">
+      <h2>Bitcoin (BTC)</h2>
+      <canvas id="btcChart"></canvas>
+    </div>
+
+    <div class="card">
+      <h2>Ethereum (ETH)</h2>
+      <canvas id="ethChart"></canvas>
+    </div>
+
+    <div class="card">
+      <h2>Solana (SOL)</h2>
+      <canvas id="solChart"></canvas>
+    </div>
+
+    <div class="card">
+      <h2>Ripple (XRP)</h2>
+      <canvas id="xrpChart"></canvas>
+    </div>
+
+  </div>
+</div>
+
+<script>
+function createChart(id, label, color) {
+  return new Chart(document.getElementById(id), {
+    type: "line",
+    data: {
+      labels: [],
+      datasets: [{
+        label,
+        borderColor: color,
+        data: [],
+        tension: 0.3,
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { display: false },
+        y: { display: false }
+      }
+    }
+  });
+}
+
+const charts = {
+  btc: createChart("btcChart", "BTC", "#35e6ff"),
+  eth: createChart("ethChart", "ETH", "#39ff96"),
+  sol: createChart("solChart", "SOL", "#b26bff"),
+  xrp: createChart("xrpChart", "XRP", "#ff3b68"),
+};
+
+async function updateCharts() {
+  const coinMap = {
+    btc: "bitcoin",
+    eth: "ethereum",
+    sol: "solana",
+    xrp: "ripple"
+  };
+
+  for (let key in coinMap) {
+    const res = await fetch(
+      https://api.coingecko.com/api/v3/simple/price?ids=${coinMap[key]}&vs_currencies=usd
+    );
+    const data = await res.json();
+    const price = data[coinMap[key]].usd;
+
+    let chart = charts[key];
+
+    if (chart.data.labels.length > 50) {
+      chart.data.labels.shift();
+      chart.data.datasets[0].data.shift();
+    }
+
+    chart.data.labels.push("");
+    chart.data.datasets[0].data.push(price);
+    chart.update();
+  }
+}
+
+setInterval(updateCharts, 3000);
+updateCharts();
+</script>
+
+</body>
+</html>
