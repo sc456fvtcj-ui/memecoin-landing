@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>BLOCKVISION Launchpad • Pump Style</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: system-ui, sans-serif;
+        background: linear-gradient(140deg, #111, #1b0036, #002d41);
+        color: white;
+        overflow-x: hidden;
+    }
+
+    /* Header */
+    .header {
+        padding: 20px;
+        text-align: center;
+    }
+
+    .header h1 {
+        margin: 0;
+        font-size: 34px;
+        background: linear-gradient(45deg, #0ff, #0f0, #ff0);
+        -webkit-background-clip: text;
+        color: transparent;
+        font-weight: 800;
+    }
+
+    .search-box {
+        margin: 25px auto;
+        width: 90%;
+        max-width: 450px;
+    }
+
+    .search-box input {
+        width: 100%;
+        padding: 14px;
+        border-radius: 12px;
+        border: none;
+        outline: none;
+        font-size: 16px;
+        background: #222;
+        color: #fff;
+    }
+
+    /* Trending Grid */
+    .coin-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 15px;
+        padding: 20px;
+        width: 92%;
+        margin: auto;
+    }
+
+    .coin-card {
+        background: #111;
+        padding: 16px;
+        border-radius: 16px;
+        transition: 0.25s;
+        border: 1px solid #333;
+    }
+
+    .coin-card:hover {
+        transform: scale(1.05);
+        border-color: #0ff;
+        box-shadow: 0 0 12px #0ff5;
+    }
+
+    .coin-img {
+        width: 55px;
+        height: 55px;
+        border-radius: 12px;
+    }
+
+    .coin-title {
+        font-size: 18px;
+        margin-top: 10px;
+        font-weight: 700;
+    }
+
+    .stats {
+        margin-top: 6px;
+        opacity: 0.8;
+        font-size: 14px;
+    }
+
+    .btn {
+        display: block;
+        margin-top: 12px;
+        padding: 10px;
+        text-align: center;
+        border-radius: 10px;
+        background: #0ff5;
+        color: black;
+        font-weight: 600;
+        text-decoration: none;
+    }
+
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <h1>🚀 BLOCKVISION • Meme Launchpad</h1>
+    <div class="search-box">
+        <input id="search" placeholder="Search all meme coins..." />
+    </div>
+</div>
+
+<div id="coinList" class="coin-grid"></div>
+
+<script>
+const coins = [
+    { name: "PEPE", img: "https://cryptologos.cc/logos/pepe-pepe-logo.png", price: "0.00000123", vol: "$42M" },
+    { name: "DOGE", img: "https://cryptologos.cc/logos/dogecoin-doge-logo.png", price: "$0.088", vol: "$1.4B" },
+    { name: "SHIB", img: "https://cryptologos.cc/logos/shiba-inu-shib-logo.png", price: "$0.0000076", vol: "$310M" },
+    { name: "FLOKI", img: "https://cryptologos.cc/logos/floki-inu-floki-logo.png", price: "$0.000036", vol: "$65M" },
+    { name: "BONK", img: "https://cryptologos.cc/logos/bonk-bonk-logo.png", price: "$0.000012", vol: "$120M" },
+];
+
+function renderCoins(filter="") {
+    const list = document.getElementById("coinList");
+    list.innerHTML = "";
+
+    coins
+        .filter(c => c.name.toLowerCase().includes(filter.toLowerCase()))
+        .forEach(c => {
+            list.innerHTML += `
+                <div class="coin-card">
+                    <img class="coin-img" src="${c.img}">
+                    <div class="coin-title">${c.name}</div>
+                    <div class="stats">💲 Price: ${c.price}</div>
+                    <div class="stats">📈 Volume: ${c.vol}</div>
+                    <a class="btn">View Chart</a>
+                </div>
+            `;
+        });
+}
+
+document.getElementById("search").oninput = e => renderCoins(e.target.value);
+renderCoins();
+</script>
+
+</body>
+</html>
