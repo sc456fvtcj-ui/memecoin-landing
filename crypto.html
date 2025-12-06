@@ -1,4 +1,724 @@
-data || [];
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>BLOCKVISION | Live Crypto Meme Flow</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- סגנון דומה ללנדינג – כהה, גריד, כפתורים עגולים וכו' -->
+  <style>
+    :root {
+      --bg-main: #030712;
+      --bg-panel: #050b1a;
+      --accent: #3af5c7;
+      --accent-soft: rgba(58, 245, 199, 0.15);
+      --accent-strong: #0fe08e;
+      --text-main: #f9fafb;
+      --text-muted: #9ca3af;
+      --border-soft: #1f2937;
+      --danger: #f97373;
+      --good: #4ade80;
+      --font-main: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Inter", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background: radial-gradient(circle at top left, #042f2e 0, #020617 45%, #000 100%);
+      color: var(--text-main);
+      min-height: 100vh;
+    }
+
+    .grid-bg::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: linear-gradient(
+          rgba(15, 23, 42, 0.8) 1px,
+          transparent 1px
+        ),
+        linear-gradient(90deg, rgba(15, 23, 42, 0.8) 1px, transparent 1px);
+      background-size: 40px 40px;
+      opacity: 0.25;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 24px 16px 40px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-badge {
+      width: 36px;
+      height: 36px;
+      border-radius: 14px;
+      background: radial-gradient(circle at 30% 30%, #38bdf8, #0f172a);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .brand-title {
+      letter-spacing: 0.2em;
+      font-size: 11px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .brand-subtitle {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .header-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: flex-end;
+    }
+
+    .pill {
+      border-radius: 999px;
+      padding: 6px 14px;
+      font-size: 12px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(16px);
+    }
+
+    .pill strong {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .pill-fire {
+      border-color: rgba(248, 113, 113, 0.6);
+      color: #fecaca;
+    }
+
+    .pill-fire span {
+      font-size: 14px;
+    }
+
+    .hero {
+      margin-top: 10px;
+      margin-bottom: 24px;
+    }
+
+    .hero-title {
+      font-size: clamp(28px, 5vw, 36px);
+      line-height: 1.1;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .hero-title span {
+      background: linear-gradient(90deg, #34d399, #22d3ee);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-sub {
+      margin-top: 12px;
+      font-size: 14px;
+      color: var(--text-muted);
+      max-width: 720px;
+    }
+
+    .hero-sub strong {
+      color: #e5e7eb;
+      font-weight: 600;
+    }
+
+    .hero-actions {
+      margin-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .btn,
+    .btn-outline {
+      border-radius: 999px;
+      padding: 10px 18px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      border: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+
+    .btn {
+      background: radial-gradient(circle at 0% 0%, #4ade80, #22c55e);
+      color: #022c22;
+      box-shadow: 0 0 25px rgba(34, 197, 94, 0.5);
+    }
+
+    .btn-outline {
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid var(--border-soft);
+      color: var(--text-main);
+    }
+
+    .btn small {
+      font-size: 11px;
+      opacity: 0.9;
+      text-transform: uppercase;
+    }
+
+    main {
+      margin-top: 20px;
+      background: radial-gradient(circle at top left, var(--accent-soft), #020617);
+      border-radius: 20px;
+      padding: 18px 14px 18px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      box-shadow: 0 24px 70px rgba(15, 23, 42, 0.9);
+    }
+
+    .panel-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+
+    .panel-title {
+      font-size: 18px;
+      font-weight: 700;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .panel-title span {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    .search-container {
+      position: relative;
+      min-width: 220px;
+      flex: 1;
+      max-width: 320px;
+    }
+
+    .search-input {
+      width: 100%;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--text-main);
+      padding: 9px 36px 9px 32px;
+      font-size: 13px;
+      outline: none;
+    }
+
+    .search-input::placeholder {
+      color: #6b7280;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 14px;
+      opacity: 0.7;
+    }
+
+    .search-hint {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 10px;
+      color: #6b7280;
+      border-radius: 999px;
+      border: 1px solid #374151;
+      padding: 2px 6px;
+    }
+
+    .status-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      font-size: 11px;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--good);
+      box-shadow: 0 0 10px var(--good);
+    }
+
+    /* טבלה */
+    .table-wrapper {
+      width: 100%;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(31, 41, 55, 0.9);
+      background: rgba(15, 23, 42, 0.95);
+      max-height: 480px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      font-size: 12px;
+      table-layout: fixed;
+    }
+
+    thead {
+      background: rgba(15, 23, 42, 0.95);
+    }
+
+    th,
+    td {
+      padding: 9px 10px;
+      text-align: left;
+      border-bottom: 1px solid rgba(31, 41, 55, 0.9);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    th {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #9ca3af;
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      background: linear-gradient(
+        to bottom,
+        #020617,
+        rgba(15, 23, 42, 0.98)
+      );
+    }
+
+    tbody {
+      background: rgba(15, 23, 42, 0.95);
+      display: block;
+      max-height: 420px;
+      overflow-y: auto;
+    }
+
+    thead tr,
+    tbody tr {
+      display: table;
+      width: 100%;
+      table-layout: fixed;
+    }
+
+    tbody tr:nth-child(even) {
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    tbody tr:hover {
+      background: rgba(15, 23, 42, 0.7);
+    }
+
+    .coin-name {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .coin-name span {
+      font-size: 11px;
+      color: #9ca3af;
+    }
+
+    .badge-symbol {
+      font-size: 10px;
+      border-radius: 999px;
+      padding: 2px 7px;
+      border: 1px solid #334155;
+      background: rgba(15, 23, 42, 0.8);
+      color: #e5e7eb;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .price {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .change-pos {
+      color: var(--good);
+    }
+
+    .change-neg {
+      color: var(--danger);
+    }
+
+    .more-link {
+      font-size: 11px;
+      color: var(--accent-strong);
+      text-decoration: none;
+      border-radius: 999px;
+      padding: 4px 8px;
+      border: 1px solid rgba(45, 212, 191, 0.3);
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    .more-link:hover {
+      border-color: var(--accent);
+    }
+
+    .loader {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      padding: 30px 10px;
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+
+    .loader-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--accent);
+      animation: pulse 1s infinite alternate;
+    }
+
+    .loader-dot:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .loader-dot:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+
+    @keyframes pulse {
+      from {
+        transform: scale(0.9);
+        opacity: 0.4;
+      }
+      to {
+        transform: scale(1.2);
+        opacity: 1;
+      }
+    }
+
+    .error-text {
+      color: var(--danger);
+      font-size: 12px;
+      margin-top: 8px;
+    }
+
+    footer {
+      margin-top: 18px;
+      font-size: 10px;
+      color: #6b7280;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+    }
+
+    footer a {
+      color: #9ca3af;
+      text-decoration: none;
+      border-bottom: 1px dashed #4b5563;
+    }
+
+    @media (max-width: 640px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .panel-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      main {
+        padding: 16px 12px 14px;
+      }
+
+      .table-wrapper {
+        border-radius: 12px;
+      }
+    }
+  </style>
+</head>
+
+<body class="grid-bg">
+  <div class="page">
+    <!-- HEADER -->
+    <header>
+      <div class="brand">
+        <div class="brand-badge">BV</div>
+        <div class="brand-text">
+          <div class="brand-title">BLOCKVISION</div>
+          <div class="brand-subtitle">Meme Momentum • Live Feed</div>
+        </div>
+      </div>
+
+      <div class="header-badges">
+        <div class="pill pill-fire">
+          <span>🔥</span> Meme Season Mode <strong>ON</strong>
+        </div>
+        <div class="pill">
+          <span>⚡</span> Early Access
+        </div>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+      <h1 class="hero-title">
+        AI-DRIVEN <span>LIVE MEME COIN FLOW</span>
+      </h1>
+      <p class="hero-sub">
+        דף זה מושך <strong>מידע חי</strong> מתוך CoinCap API – שערים, שווי שוק
+        ושינוי יומי לכל המטבעות המובילים, בדף אחד עם מנוע חיפוש.
+      </p>
+
+      <div class="hero-actions">
+        <a href="/" class="btn-outline">⬅ Back to Landing</a>
+        <a
+          href="https://coincap.io"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-outline"
+        >
+          Powered by CoinCap API
+        </a>
+      </div>
+    </section>
+
+    <!-- MAIN PANEL -->
+    <main>
+      <div class="panel-header">
+        <div class="panel-title">
+          Community Meme Momentum Scanner
+          <span>Top crypto assets • live prices • searchable in real-time</span>
+        </div>
+
+        <div class="search-container">
+          <span class="search-icon">🔍</span>
+          <input
+            id="searchInput"
+            class="search-input"
+            type="text"
+            placeholder="חפש מטבע לפי שם או סימול…"
+          />
+          <span class="search-hint">Enter</span>
+        </div>
+      </div>
+
+      <div class="status-bar">
+        <div class="status-pill">
+          <span class="status-dot"></span>
+          Live feed from CoinCap • refreshed on load
+        </div>
+        <div id="statusText">Loading assets…</div>
+      </div>
+
+      <div class="table-wrapper" id="tableWrapper">
+        <div class="loader" id="loader">
+          <span class="loader-dot"></span>
+          <span class="loader-dot"></span>
+          <span class="loader-dot"></span>
+          <span>Reading the flow…</span>
+        </div>
+
+        <table id="assetsTable" style="display: none">
+          <thead>
+            <tr>
+              <th style="width: 34%">Asset</th>
+              <th style="width: 12%">Symbol</th>
+              <th style="width: 18%">Price (USD)</th>
+              <th style="width: 14%">24h Change</th>
+              <th style="width: 22%">Market Cap</th>
+              <th style="width: 14%">More</th>
+            </tr>
+          </thead>
+          <tbody id="assetsBody"></tbody>
+        </table>
+      </div>
+
+      <div id="errorBox" class="error-text" style="display: none"></div>
+    </main>
+
+    <footer>
+      <span>Data by CoinCap API • prices in USD • demo only, not financial advice.</span>
+      <span>Built for the BLOCKVISION community whale 🐋</span>
+    </footer>
+  </div>
+
+  <!-- SCRIPT: fetch + search -->
+  <script>
+    const API_URL = "https://api.coincap.io/v2/assets?limit=300";
+
+    const statusText = document.getElementById("statusText");
+    const loader = document.getElementById("loader");
+    const table = document.getElementById("assetsTable");
+    const tbody = document.getElementById("assetsBody");
+    const searchInput = document.getElementById("searchInput");
+    const errorBox = document.getElementById("errorBox");
+
+    let allAssets = [];
+
+    function formatNumber(num, options = {}) {
+      const n = Number(num);
+      if (!isFinite(n)) return "-";
+      return n.toLocaleString("en-US", options);
+    }
+
+    function renderTable(list) {
+      tbody.innerHTML = "";
+
+      list.forEach((asset) => {
+        const tr = document.createElement("tr");
+
+        const change = Number(asset.changePercent24Hr || 0);
+        const changeClass =
+          change > 0 ? "change-pos" : change < 0 ? "change-neg" : "";
+
+        const nameCell = `
+          <div class="coin-name">
+            <div>${asset.rank}. ${asset.name}</div>
+            <span>ID: ${asset.id}</span>
+          </div>
+        `;
+
+        const symbolCell = `
+          <span class="badge-symbol">
+            ${asset.symbol}
+          </span>
+        `;
+
+        const priceCell = `
+          <span class="price">
+            $${formatNumber(asset.priceUsd, {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 6,
+            })}
+          </span>
+        `;
+
+        const changeCell = `
+          <span class="${changeClass}">
+            ${change > 0 ? "+" : ""}${change.toFixed(2)}%
+          </span>
+        `;
+
+        const mcapCell = `
+          <span class="price">
+            $${formatNumber(asset.marketCapUsd, {
+              notation: "compact",
+              maximumFractionDigits: 2,
+            })}
+          </span>
+        `;
+
+        const url = `https://coincap.io/assets/${asset.id}`;
+        const moreCell = `
+          <a href="${url}" target="_blank" rel="noopener noreferrer" class="more-link">
+            Open
+          </a>
+        `;
+
+        tr.innerHTML = `
+          <td>${nameCell}</td>
+          <td>${symbolCell}</td>
+          <td>${priceCell}</td>
+          <td>${changeCell}</td>
+          <td>${mcapCell}</td>
+          <td>${moreCell}</td>
+        `;
+
+        tbody.appendChild(tr);
+      });
+
+      statusText.textContent = `Showing ${list.length} assets (from ${
+        allAssets.length
+      })`;
+    }
+
+    async function loadAssets() {
+      try {
+        loader.style.display = "flex";
+        table.style.display = "none";
+        errorBox.style.display = "none";
+        statusText.textContent = "Loading assets…";
+
+        const res = await fetch(API_URL);
+        if (!res.ok) {
+          throw new Error("API error: " + res.status);
+        }
+
+        const json = await res.json();
+        allAssets = json.data || [];
         renderTable(allAssets);
 
         loader.style.display = "none";
