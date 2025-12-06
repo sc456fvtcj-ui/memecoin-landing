@@ -3,147 +3,200 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>BLOCKVISION Launchpad • Pump Style</title>
+<title>BLOCKVISION • MemeCoin Radar</title>
 
 <style>
-    body {
-        margin: 0;
-        font-family: system-ui, sans-serif;
-        background: linear-gradient(140deg, #111, #1b0036, #002d41);
-        color: white;
-        overflow-x: hidden;
-    }
+  body {
+    margin: 0;
+    background: #050808;
+    font-family: system-ui, sans-serif;
+    color: #eafff9;
+  }
 
-    /* Header */
-    .header {
-        padding: 20px;
-        text-align: center;
-    }
+  .header {
+    text-align: center;
+    padding: 40px 20px;
+  }
 
-    .header h1 {
-        margin: 0;
-        font-size: 34px;
-        background: linear-gradient(45deg, #0ff, #0f0, #ff0);
-        -webkit-background-clip: text;
-        color: transparent;
-        font-weight: 800;
-    }
+  .header h1 {
+    font-size: 42px;
+    font-weight: 900;
+    background: linear-gradient(45deg, #00ffe1, #00ff82, #00b7ff);
+    -webkit-background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 18px #00ffe577;
+  }
 
-    .search-box {
-        margin: 25px auto;
-        width: 90%;
-        max-width: 450px;
-    }
+  .header p {
+    font-size: 18px;
+    color: #8daca5;
+    margin-top: 6px;
+  }
 
-    .search-box input {
-        width: 100%;
-        padding: 14px;
-        border-radius: 12px;
-        border: none;
-        outline: none;
-        font-size: 16px;
-        background: #222;
-        color: #fff;
-    }
+  .back-btn {
+    text-decoration: none;
+    margin-left: 18px;
+    color: #00ffe1;
+    font-size: 17px;
+  }
 
-    /* Trending Grid */
-    .coin-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        gap: 15px;
-        padding: 20px;
-        width: 92%;
-        margin: auto;
-    }
+  .search-box {
+    margin: 20px auto;
+    width: 90%;
+    max-width: 460px;
+  }
 
-    .coin-card {
-        background: #111;
-        padding: 16px;
-        border-radius: 16px;
-        transition: 0.25s;
-        border: 1px solid #333;
-    }
+  .search-box input {
+    width: 100%;
+    padding: 14px;
+    border-radius: 14px;
+    border: none;
+    outline: none;
+    background: #0e1d1d;
+    color: #fff;
+    font-size: 16px;
+    box-shadow: 0 0 12px #003b3355 inset;
+  }
 
-    .coin-card:hover {
-        transform: scale(1.05);
-        border-color: #0ff;
-        box-shadow: 0 0 12px #0ff5;
-    }
+  .grid {
+    width: 92%;
+    margin: auto;
+    margin-top: 26px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 22px;
+  }
 
-    .coin-img {
-        width: 55px;
-        height: 55px;
-        border-radius: 12px;
-    }
+  .card {
+    background: #0a1111;
+    border-radius: 18px;
+    padding: 20px;
+    border: 1px solid #0f2d2d;
+    transition: 0.22s;
+    box-shadow: 0 0 0 transparent;
+  }
 
-    .coin-title {
-        font-size: 18px;
-        margin-top: 10px;
-        font-weight: 700;
-    }
+  .card:hover {
+    transform: translateY(-6px);
+    border-color: #00ffe5;
+    box-shadow: 0 0 18px #00ffe533;
+  }
 
-    .stats {
-        margin-top: 6px;
-        opacity: 0.8;
-        font-size: 14px;
-    }
+  .coin-img {
+    width: 54px;
+    height: 54px;
+    border-radius: 12px;
+  }
 
-    .btn {
-        display: block;
-        margin-top: 12px;
-        padding: 10px;
-        text-align: center;
-        border-radius: 10px;
-        background: #0ff5;
-        color: black;
-        font-weight: 600;
-        text-decoration: none;
-    }
+  .title {
+    margin-top: 10px;
+    font-size: 20px;
+    font-weight: 800;
+    color: #cafff4;
+  }
 
+  .symbol {
+    opacity: 0.6;
+    font-size: 14px;
+  }
+
+  .stat {
+    margin-top: 8px;
+    font-size: 15px;
+    color: #9ce8d8;
+  }
+
+  .positive { color: #3aff89 !important; }
+  .negative { color: #ff5a6b !important; }
+
+  .view-btn {
+    display: inline-block;
+    padding: 10px 14px;
+    margin-top: 12px;
+    background: linear-gradient(45deg, #00ffe7, #00ff85);
+    color: black;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 700;
+    box-shadow: 0 0 12px #00ffd577;
+    transition: 0.2s;
+  }
+
+  .view-btn:hover {
+    transform: scale(1.06);
+  }
 </style>
-</head>
 
+</head>
 <body>
 
+<a href="index.html" class="back-btn">← Back</a>
+
 <div class="header">
-    <h1>🚀 BLOCKVISION • Meme Launchpad</h1>
-    <div class="search-box">
-        <input id="search" placeholder="Search all meme coins..." />
-    </div>
+  <h1>MEMECOIN RADAR</h1>
+  <p>Live trending meme coins • Updated every 3 seconds • Powered by BLOCKVISION</p>
+
+  <div class="search-box">
+    <input id="searchInput" placeholder="Search meme coins..." />
+  </div>
 </div>
 
-<div id="coinList" class="coin-grid"></div>
+<div id="grid" class="grid"></div>
 
 <script>
-const coins = [
-    { name: "PEPE", img: "https://cryptologos.cc/logos/pepe-pepe-logo.png", price: "0.00000123", vol: "$42M" },
-    { name: "DOGE", img: "https://cryptologos.cc/logos/dogecoin-doge-logo.png", price: "$0.088", vol: "$1.4B" },
-    { name: "SHIB", img: "https://cryptologos.cc/logos/shiba-inu-shib-logo.png", price: "$0.0000076", vol: "$310M" },
-    { name: "FLOKI", img: "https://cryptologos.cc/logos/floki-inu-floki-logo.png", price: "$0.000036", vol: "$65M" },
-    { name: "BONK", img: "https://cryptologos.cc/logos/bonk-bonk-logo.png", price: "$0.000012", vol: "$120M" },
-];
+async function loadCoins() {
+  try {
+    const url =
+      "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&category=meme-token&order=market_cap_desc&per_page=120&page=1&sparkline=false";
 
-function renderCoins(filter="") {
-    const list = document.getElementById("coinList");
-    list.innerHTML = "";
+    const res = await fetch(url);
+    const data = await res.json();
 
-    coins
-        .filter(c => c.name.toLowerCase().includes(filter.toLowerCase()))
-        .forEach(c => {
-            list.innerHTML += `
-                <div class="coin-card">
-                    <img class="coin-img" src="${c.img}">
-                    <div class="coin-title">${c.name}</div>
-                    <div class="stats">💲 Price: ${c.price}</div>
-                    <div class="stats">📈 Volume: ${c.vol}</div>
-                    <a class="btn">View Chart</a>
-                </div>
-            `;
-        });
+    window.allCoins = data;
+    renderGrid(data);
+  } catch (e) {
+    console.log("API Error:", e);
+  }
 }
 
-document.getElementById("search").oninput = e => renderCoins(e.target.value);
-renderCoins();
+function renderGrid(list) {
+  const grid = document.getElementById("grid");
+  grid.innerHTML = "";
+
+  list.forEach((coin) => {
+    const priceChange = coin.price_change_percentage_24h;
+    const changeClass = priceChange >= 0 ? "positive" : "negative";
+
+    grid.innerHTML += `
+      <div class="card">
+        <img class="coin-img" src="${coin.image}" alt="${coin.name}">
+        <div class="title">${coin.name}</div>
+        <div class="symbol">${coin.symbol.toUpperCase()}</div>
+
+        <div class="stat">💲 Price: $${coin.current_price.toLocaleString()}</div>
+        <div class="stat ${changeClass}">📈 24h: ${priceChange?.toFixed(2)}%</div>
+        <div class="stat">🏦 Market Cap: $${coin.market_cap.toLocaleString()}</div>
+        <div class="stat">📊 Volume: $${coin.total_volume.toLocaleString()}</div>
+
+        <a class="view-btn" href="https://www.coingecko.com/en/coins/${coin.id}" target="_blank">
+          View Chart
+        </a>
+      </div>
+    `;
+  });
+}
+
+document.getElementById("searchInput").addEventListener("keyup", function () {
+  const term = this.value.toLowerCase();
+  const filtered = window.allCoins.filter((coin) =>
+    coin.name.toLowerCase().includes(term) ||
+    coin.symbol.toLowerCase().includes(term)
+  );
+  renderGrid(filtered);
+});
+
+loadCoins();
+setInterval(loadCoins, 3000);
 </script>
 
 </body>
